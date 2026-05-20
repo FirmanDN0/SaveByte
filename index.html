@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SaveBite - Save Food, Reduce Waste & Help the Planet</title>
+    <meta name="description" content="SaveBite connects local restaurants, cafes, and bakeries with food lovers to rescue delicious surplus meals at discounted prices. Stop food waste today!">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+
+    <!-- Loading Animation Screen -->
+    <div class="loader-wrapper">
+        <div class="loader-content">
+            <div class="loader-logo">
+                <svg viewBox="0 0 24 24">
+                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2V7zm0 8h2v2h-2v-2z"/>
+                </svg>
+                <span>SaveBite</span>
+            </div>
+            <div class="loader-bar">
+                <div class="loader-progress"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header & Navigation -->
+    <header>
+        <div class="navbar-container">
+            <a href="index.html" class="logo">
+                <svg viewBox="0 0 24 24">
+                    <path d="M12 2C8 2 4 5 4 10c0 4.5 3 8.5 7.5 9.8.3.1.5-.1.5-.4v-2.2c0-.3-.1-.6-.3-.8l-1.5-1.5c-.3-.3-.3-.8 0-1.1l.6-.6c.3-.3.8-.3 1.1 0l1.5 1.5c.2.2.5.3.8.3h.2c.3 0 .6-.1.8-.3l1.5-1.5c.3-.3.8-.3 1.1 0l.6.6c.3.3.3.8 0 1.1l-1.5 1.5c-.2.2-.3.5-.3.8v2.2c0 .3.2.5.5.4C17 18.5 20 14.5 20 10c0-5-4-8-8-8zm-1 5c0-.6.4-1 1-1s1 .4 1 1v4c0 .6-.4 1-1 1s-1-.4-1-1V7z"/>
+                </svg>
+                <span>SaveBite</span>
+            </a>
+            
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="index.html" class="active">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="marketplace.html">Marketplace</a></li>
+                    <li><a href="impact.html">Eco Impact</a></li>
+                    <li><a href="restaurant.html">For Business</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                </ul>
+            </nav>
+            
+            <div class="nav-cta">
+                <a href="marketplace.html" class="btn btn-primary clickable">Rescue Food Now</a>
+            </div>
+            
+            <button class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container grid-2">
+            <div class="hero-content reveal-left active">
+                <div class="hero-badge">
+                    <span class="hero-badge-tag">NEW</span>
+                    <span>Saving 1,500+ tons of meals this month!</span>
+                </div>
+                
+                <h1 class="hero-title" style="position: relative;">
+                    Save Food.<br>
+                    <span class="text-gradient">Reduce Waste.</span>
+                    <span class="spin-slow" style="position: absolute; top: -10px; right: 40px; color: var(--accent); width: 34px; height: 34px; pointer-events: none;">
+                        <svg viewBox="0 0 24 24" style="fill: currentColor; width: 100%; height: 100%;"><path d="M12 2L9.5 9.5 2 12l7.5 2.5L12 22l2.5-7.5L22 12l-7.5-2.5z"/></svg>
+                    </span>
+                </h1>
+                
+                <p class="hero-desc">
+                    Rescue highly delicious surplus meals, bakeries, and organic groceries from premium local spots at up to 70% off. Eat wonderfully, save your wallet, and save our planet.
+                </p>
+                
+                <div class="hero-search-pill">
+                    <input type="text" placeholder="Type 'Bakery' or your favorite restaurant..." readonly onclick="location.href='marketplace.html'">
+                    <button class="btn btn-primary clickable" onclick="location.href='marketplace.html'">Find Food</button>
+                </div>
+                
+                <div class="hero-stats-quick">
+                    <div class="hero-stat-item">
+                        <h4>12K+</h4>
+                        <p>Meals Saved</p>
+                    </div>
+                    <div style="width: 1px; background-color: var(--grey-medium);"></div>
+                    <div class="hero-stat-item">
+                        <h4>150+</h4>
+                        <p>Partners</p>
+                    </div>
+                    <div style="width: 1px; background-color: var(--grey-medium);"></div>
+                    <div class="hero-stat-item">
+                        <h4>30 tons</h4>
+                        <p>CO2 Avoided</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="hero-image-wrapper reveal-right active">
+                <div class="hero-image-bg morph-blob"></div>
+                <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=600&q=80" alt="Fresh delicious organic meals" class="hero-main-img tilt-element">
+                
+                <!-- Floating Glass Card Overlay -->
+                <div class="hero-floating-card">
+                    <div class="floating-icon">
+                        <svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+                    </div>
+                    <div class="floating-card-info">
+                        <h5>Healthy Salmon Salad</h5>
+                        <p>Rescued 5m ago • Rp 35K</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Global Food Waste Crisis stats -->
+    <section class="stats-section">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="section-badge">The Waste Problem</span>
+                <h2 class="section-title">The Harsh Reality of Food Waste</h2>
+                <p class="section-desc">Every single day, massive amounts of completely edible, high-quality food are thrown away. We are on a mission to shift this dynamic.</p>
+            </div>
+            
+            <div class="grid-3">
+                <div class="stat-box reveal reveal-delay-1">
+                    <div class="stat-icon">
+                        <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-2 10h-4v4h-2v-4H7v-2h4V7h2v4h4v2z"/></svg>
+                    </div>
+                    <div class="stat-number stat-counter" data-target="13" data-suffix="B Tons">0</div>
+                    <h3 class="stat-label">Wasted Annually</h3>
+                    <p class="stat-desc">Nearly 1.3 billion tons of excellent consumable food is lost or thrown away globally every year.</p>
+                </div>
+                
+                <div class="stat-box reveal reveal-delay-2">
+                    <div class="stat-icon">
+                        <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+                    </div>
+                    <div class="stat-number stat-counter" data-target="33" data-suffix="%">0</div>
+                    <h3 class="stat-label">Of All Food Produced</h3>
+                    <p class="stat-desc">More than one-third of global agricultural output is wasted, causing severe environmental and economic losses.</p>
+                </div>
+                
+                <div class="stat-box reveal reveal-delay-3">
+                    <div class="stat-icon">
+                        <svg viewBox="0 0 24 24"><path d="M12 2L1 21h22L12 2zm1 14h-2v-2h2v2zm0-4h-2V8h2v4z"/></svg>
+                    </div>
+                    <div class="stat-number stat-counter" data-target="10" data-suffix="%">0</div>
+                    <h3 class="stat-label">Of Global Emissions</h3>
+                    <p class="stat-desc">Food waste in landfills decays, producing harmful methane gas which accounts for 10% of global greenhouse gases.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section>
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="section-badge">Simple Steps</span>
+                <h2 class="section-title">How to Rescue Food</h2>
+                <p class="section-desc">Joining the sustainability movement takes less than 3 minutes. Here is how simple it is to start saving food today.</p>
+            </div>
+            
+            <div class="grid-3">
+                <div class="step-card reveal reveal-delay-1">
+                    <div class="step-num">1</div>
+                    <h3 class="step-title">Discover Stores Nearby</h3>
+                    <p class="step-desc">Open our live interactive map/marketplace, filter by your favorite bakeries or cafe categories, and browse fresh surplus foods.</p>
+                </div>
+                
+                <div class="step-card reveal reveal-delay-2">
+                    <div class="step-num">2</div>
+                    <h3 class="step-title">Reserve at Low Price</h3>
+                    <p class="step-desc">Buy packages straight on the platform at a massive discount (up to 70% off) to claim them before they are thrown out.</p>
+                </div>
+                
+                <div class="step-card reveal reveal-delay-3">
+                    <div class="step-num">3</div>
+                    <h3 class="step-title">Pickup & Enjoy</h3>
+                    <p class="step-desc">Head to the store at the listed pickup window, show your digital checkout confirmation, collect your food, and celebrate your green impact!</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Preview Surplus Foods Card Slider -->
+    <section style="background-color: var(--bg-white);">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="section-badge">Live Deals</span>
+                <h2 class="section-title">Rescue Top Food Today</h2>
+                <p class="section-desc">Delightful surplus meals available right now in your area. Grab them fast before they sell out or expire!</p>
+            </div>
+            
+            <div class="grid-3" id="home-food-grid">
+                <!-- Hardcoded high quality food items preview -->
+                <div class="food-card reveal active">
+                    <div class="card-img-wrapper">
+                        <span class="discount-badge">-62%</span>
+                        <img src="https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&w=400&q=80" alt="Croissants">
+                    </div>
+                    <div class="card-body">
+                        <span class="card-restaurant">La Parisienne Boulangerie</span>
+                        <h3 class="card-title">Assorted Gourmet Croissants (Box of 4)</h3>
+                        <div class="card-meta">
+                            <span class="meta-item">★ 4.8</span>
+                            <span class="meta-item">1.2 km</span>
+                        </div>
+                        <div class="card-timer-badge">
+                            <span>45m remaining</span>
+                        </div>
+                        <div class="card-footer">
+                            <div class="card-price">
+                                <span class="price-original">Rp 120.000</span>
+                                <span class="price-discount">Rp 45.000</span>
+                            </div>
+                            <button class="btn btn-primary btn-sm clickable" onclick="location.href='marketplace.html'">Rescue</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="food-card reveal active">
+                    <div class="card-img-wrapper">
+                        <span class="discount-badge">-59%</span>
+                        <img src="https://images.unsplash.com/photo-1579871494447-9811cf80d66c?auto=format&fit=crop&w=400&q=80" alt="Sushi">
+                    </div>
+                    <div class="card-body">
+                        <span class="card-restaurant">Sakura Zen Restaurant</span>
+                        <h3 class="card-title">Premium Salmon Sushi Platter</h3>
+                        <div class="card-meta">
+                            <span class="meta-item">★ 4.9</span>
+                            <span class="meta-item">2.5 km</span>
+                        </div>
+                        <div class="card-timer-badge urgent">
+                            <span>25m remaining</span>
+                        </div>
+                        <div class="card-footer">
+                            <div class="card-price">
+                                <span class="price-original">Rp 185.000</span>
+                                <span class="price-discount">Rp 75.000</span>
+                            </div>
+                            <button class="btn btn-primary btn-sm clickable" onclick="location.href='marketplace.html'">Rescue</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="food-card reveal active">
+                    <div class="card-img-wrapper">
+                        <span class="discount-badge">-60%</span>
+                        <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=400&q=80" alt="Salad">
+                    </div>
+                    <div class="card-body">
+                        <span class="card-restaurant">The Green Spot Cafe</span>
+                        <h3 class="card-title">Healthy Salad Bowl & Cold Brew Set</h3>
+                        <div class="card-meta">
+                            <span class="meta-item">★ 4.7</span>
+                            <span class="meta-item">0.8 km</span>
+                        </div>
+                        <div class="card-timer-badge">
+                            <span>60m remaining</span>
+                        </div>
+                        <div class="card-footer">
+                            <div class="card-price">
+                                <span class="price-original">Rp 95.000</span>
+                                <span class="price-discount">Rp 38.000</span>
+                            </div>
+                            <button class="btn btn-primary btn-sm clickable" onclick="location.href='marketplace.html'">Rescue</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 50px;" class="reveal">
+                <a href="marketplace.html" class="btn btn-outline clickable">Browse Entire Marketplace</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Partner Logos Infinite Carousel/Ticker -->
+    <section class="partner-section">
+        <div class="container">
+            <h4 style="text-align: center; font-size: 0.95rem; text-transform: uppercase; color: var(--text-muted); margin-bottom: 30px; font-weight: 700; letter-spacing: 2px;">Trusted By Premium Sustainable Partners</h4>
+            
+            <div class="marquee-container">
+                <div class="marquee-content">
+                    <div class="partner-logo">
+                        <svg viewBox="0 0 24 24"><path d="M12 2L2 22h20L12 2zm0 3.99L19.53 19H4.47L12 5.99z"/></svg>
+                        <span>Harvest Green</span>
+                    </div>
+                    <div class="partner-logo">
+                        <svg viewBox="0 0 24 24"><path d="M12 3c-4.97 0-9 4.03-9 9 0 2.12.74 4.07 1.97 5.61L4.35 19.4c-.39.39-.39 1.02 0 1.41.39.39 1.02.39 1.41 0l1.9-1.9C9.93 19.53 10.93 20 12 20c4.97 0 9-4.03 9-9s-4.03-9-9-9zm0 15c-3.31 0-6-2.69-6-6s2.69-6 6-6 6 2.69 6 6-2.69 6-6 6z"/></svg>
+                        <span>EcoBakery</span>
+                    </div>
+                    <div class="partner-logo">
+                        <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+                        <span>SaladSphere</span>
+                    </div>
+                    <div class="partner-logo">
+                        <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+                        <span>GourmetBento</span>
+                    </div>
+                    <div class="partner-logo">
+                        <svg viewBox="0 0 24 24"><path d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2zm5.5 13H15c-.55 0-1-.45-1-1v-3.5c0-.55-.45-1-1-1h-2c-.55 0-1 .45-1 1V13H6.5c-.28 0-.5-.22-.5-.5V8c0-.55.45-1 1-1h10c.55 0 1 .45 1 1v4.5c0 .28-.22.5-.5.5z"/></svg>
+                        <span>FarmGrocer</span>
+                    </div>
+                    <!-- Duplicate for infinite effect -->
+                    <div class="partner-logo">
+                        <svg viewBox="0 0 24 24"><path d="M12 2L2 22h20L12 2zm0 3.99L19.53 19H4.47L12 5.99z"/></svg>
+                        <span>Harvest Green</span>
+                    </div>
+                    <div class="partner-logo">
+                        <svg viewBox="0 0 24 24"><path d="M12 3c-4.97 0-9 4.03-9 9 0 2.12.74 4.07 1.97 5.61L4.35 19.4c-.39.39-.39 1.02 0 1.41.39.39 1.02.39 1.41 0l1.9-1.9C9.93 19.53 10.93 20 12 20c4.97 0 9-4.03 9-9s-4.03-9-9-9zm0 15c-3.31 0-6-2.69-6-6s2.69-6 6-6 6 2.69 6 6-2.69 6-6 6z"/></svg>
+                        <span>EcoBakery</span>
+                    </div>
+                    <div class="partner-logo">
+                        <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+                        <span>SaladSphere</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonial Slider Section -->
+    <section>
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="section-badge">Testimonials</span>
+                <h2 class="section-title">What Our Community Says</h2>
+                <p class="section-desc">Food waste reduction is a community effort. Meet some of our enthusiastic food rescuers and sustainable partner managers.</p>
+            </div>
+            
+            <div class="testimonial-slider reveal">
+                <div class="testimonial-track">
+                    <div class="testimonial-item">
+                        <p class="testimonial-content">
+                            “SaveBite completely changed my lunch routine! I now rescue five-star meals from local cafes at a fraction of the cost. Not only does my wallet feel heavier, but knowing that I am keeping edible meals out of toxic landfills makes me feel absolutely brilliant.”
+                        </p>
+                        <div class="testimonial-user">
+                            <div class="testimonial-avatar">AD</div>
+                            <span class="testimonial-name">Ahmad Dewanto</span>
+                            <span class="testimonial-role">Eco Rescuer • Student</span>
+                        </div>
+                    </div>
+                    <div class="testimonial-item">
+                        <p class="testimonial-content">
+                            “Running a busy bakery means we always have unsold sourdough and pastries at closing time. SaveBite has helped us connect with local eco-conscious consumers who happily purchase our surplus. We reduced waste by 80% and got new loyal customers!”
+                        </p>
+                        <div class="testimonial-user">
+                            <div class="testimonial-avatar">MR</div>
+                            <span class="testimonial-name">Marie R.</span>
+                            <span class="testimonial-role">Owner • La Parisienne Boulangerie</span>
+                        </div>
+                    </div>
+                    <div class="testimonial-item">
+                        <p class="testimonial-content">
+                            “The ecological impact dashboard is incredible! I can see exactly how much CO2 emissions I've personally prevented. SaveBite is the perfect blend of sustainable living, user friendliness, and real, pocket-friendly value.”
+                        </p>
+                        <div class="testimonial-user">
+                            <div class="testimonial-avatar">RF</div>
+                            <span class="testimonial-name">Rian F.</span>
+                            <span class="testimonial-role">Eco Activist</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="slider-controls">
+                    <button class="slider-btn" id="prev-testimonial">
+                        <svg viewBox="0 0 24 24"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
+                    </button>
+                    <button class="slider-btn" id="next-testimonial">
+                        <svg viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sustainability and SDGs Focus section -->
+    <section style="background-color: var(--bg-white);">
+        <div class="container grid-2">
+            <div class="reveal-left">
+                <span class="section-badge">Our Commitment</span>
+                <h2 class="section-title">Driving Towards UN Sustainable Development Goals (SDGs)</h2>
+                <p class="section-desc" style="margin-bottom: 24px;">
+                    We strongly align SaveBite's platform roadmap to push back on global crises and support crucial UN SDGs by 2030.
+                </p>
+                <div style="display: flex; flex-direction: column; gap: 16px;">
+                    <div style="display: flex; gap: 16px; align-items: flex-start;">
+                        <span style="font-size: 1.5rem; font-weight: 700; color: var(--accent);">02</span>
+                        <div>
+                            <h4 style="font-size: 1.1rem; margin-bottom: 4px;">Zero Hunger</h4>
+                            <p style="font-size: 0.9rem; color: var(--text-muted);">Redistributing premium food surplus prevents wastage while optimizing local resources to fight food insecurity.</p>
+                        </div>
+                    </div>
+                    <div style="display: flex; gap: 16px; align-items: flex-start;">
+                        <span style="font-size: 1.5rem; font-weight: 700; color: var(--accent);">12</span>
+                        <div>
+                            <h4 style="font-size: 1.1rem; margin-bottom: 4px;">Responsible Consumption</h4>
+                            <p style="font-size: 0.9rem; color: var(--text-muted);">We create circles of clean, responsible commerce matching supply excesses directly with immediate local demand.</p>
+                        </div>
+                    </div>
+                    <div style="display: flex; gap: 16px; align-items: flex-start;">
+                        <span style="font-size: 1.5rem; font-weight: 700; color: var(--accent);">13</span>
+                        <div>
+                            <h4 style="font-size: 1.1rem; margin-bottom: 4px;">Climate Action</h4>
+                            <p style="font-size: 0.9rem; color: var(--text-muted);">By preventing organic products from breaking down in landfills, we eliminate massive outputs of CO2 and greenhouse gases.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="reveal-right" style="display: flex; justify-content: center;">
+                <div class="glass-card" style="max-width: 440px; padding: 40px; text-align: center; background-color: var(--primary-light);">
+                    <svg viewBox="0 0 24 24" style="width: 64px; height: 64px; fill: var(--primary); margin: 0 auto 20px;"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
+                    <h3 style="font-size: 1.5rem; margin-bottom: 12px; font-family: 'Outfit';">Ready to make a real environmental difference?</h3>
+                    <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 30px;">Every single transaction helps plant virtual trees, saves liters of pristine water, and shrinks your municipal waste dump footprint.</p>
+                    <a href="marketplace.html" class="btn btn-primary clickable" style="width:100%;">Get Started Today</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container footer-grid">
+            <div class="footer-info">
+                <a href="index.html" class="logo">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M12 2C8 2 4 5 4 10c0 4.5 3 8.5 7.5 9.8.3.1.5-.1.5-.4v-2.2c0-.3-.1-.6-.3-.8l-1.5-1.5c-.3-.3-.3-.8 0-1.1l.6-.6c.3-.3.8-.3 1.1 0l1.5 1.5c.2.2.5.3.8.3h.2c.3 0 .6-.1.8-.3l1.5-1.5c.3-.3.8-.3 1.1 0l.6.6c.3.3.3.8 0 1.1l-1.5 1.5c-.2.2-.3.5-.3.8v2.2c0 .3.2.5.5.4C17 18.5 20 14.5 20 10c0-5-4-8-8-8zm-1 5c0-.6.4-1 1-1s1 .4 1 1v4c0 .6-.4 1-1 1s-1-.4-1-1V7z"/>
+                    </svg>
+                    <span>SaveBite</span>
+                </a>
+                <p class="footer-desc">Connect and rescue surplus organic foods from local bakeries and premium eateries. Eat well, spend less, save the planet.</p>
+                <div class="footer-socials">
+                    <a href="#" class="footer-social-link">
+                        <svg viewBox="0 0 24 24"><path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1v2h3v3h-3v6.95c4.56-.93 8-4.96 8-9.75z"/></svg>
+                    </a>
+                    <a href="#" class="footer-social-link">
+                        <svg viewBox="0 0 24 24"><path d="M12.31 6c.07-.02.15-.04.22-.05.3-.05.6-.08.9-.08 2.02 0 3.82.82 5.12 2.13l.02.02c1.3 1.3 2.12 3.1 2.12 5.12 0 1.15-.27 2.24-.76 3.2l-.02.04c-.9 1.76-2.5 3.05-4.41 3.48-.37.08-.75.12-1.15.12-.42 0-.83-.05-1.23-.13-1.85-.4-3.41-1.63-4.32-3.3l-.04-.07c-.45-.92-.7-1.95-.7-3.04 0-1.97.8-3.75 2.1-5.04C10.12 6.8 11.16 6.3 12.31 6z"/></svg>
+                    </a>
+                    <a href="#" class="footer-social-link">
+                        <svg viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.779-1.75-1.75s.784-1.75 1.75-1.75 1.75.779 1.75 1.75-.784 1.75-1.75 1.75zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                    </a>
+                </div>
+            </div>
+            
+            <div>
+                <h4 class="footer-column-title">SaveBite</h4>
+                <ul class="footer-links">
+                    <li><a href="about.html">Our Vision</a></li>
+                    <li><a href="marketplace.html">Food Marketplace</a></li>
+                    <li><a href="impact.html">Sustainability Stats</a></li>
+                    <li><a href="restaurant.html">Simulate Dashboard</a></li>
+                </ul>
+            </div>
+            
+            <div>
+                <h4 class="footer-column-title">Legal</h4>
+                <ul class="footer-links">
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                    <li><a href="#">Partner Agreement</a></li>
+                    <li><a href="#">Food Safety Standards</a></li>
+                </ul>
+            </div>
+            
+            <div>
+                <h4 class="footer-column-title">Stay Updated</h4>
+                <p class="footer-desc" style="font-size: 0.85rem; margin-bottom: 12px;">Subscribe to our sustainability newsletter and weekly discount highlights.</p>
+                <div style="display: flex; gap: 8px; border: 1.5px solid var(--grey-medium); border-radius: var(--radius-full); padding: 4px; background-color: var(--bg-cream);">
+                    <input type="email" placeholder="Your email..." style="border:none; outline:none; background:none; padding-left:12px; flex-grow:1; font-size:0.85rem;">
+                    <button class="btn btn-primary clickable" style="padding: 6px 16px; font-size: 0.85rem;">Join</button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="container footer-bottom">
+            <p>&copy; 2026 SaveBite Platform. All rights reserved.</p>
+            <p>Built with 💚 for National Web Design Competition.</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/main.js"></script>
+</body>
+</html>

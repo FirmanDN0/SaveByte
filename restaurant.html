@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurant Partner Dashboard - SaveBite</title>
+    <meta name="description" content="Simulate how food businesses upload surplus bakery, restaurant meals, or groceries live. Track earnings, food saved in kg, and carbon footprint reduction.">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+
+    <!-- Loading Animation Screen -->
+    <div class="loader-wrapper">
+        <div class="loader-content">
+            <div class="loader-logo">
+                <svg viewBox="0 0 24 24">
+                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2V7zm0 8h2v2h-2v-2z"/>
+                </svg>
+                <span>SaveBite</span>
+            </div>
+            <div class="loader-bar">
+                <div class="loader-progress"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header & Navigation -->
+    <header>
+        <div class="navbar-container">
+            <a href="index.html" class="logo">
+                <svg viewBox="0 0 24 24">
+                    <path d="M12 2C8 2 4 5 4 10c0 4.5 3 8.5 7.5 9.8.3.1.5-.1.5-.4v-2.2c0-.3-.1-.6-.3-.8l-1.5-1.5c-.3-.3-.3-.8 0-1.1l.6-.6c.3-.3.8-.3 1.1 0l1.5 1.5c.2.2.5.3.8.3h.2c.3 0 .6-.1.8-.3l1.5-1.5c.3-.3.8-.3 1.1 0l.6.6c.3.3.3.8 0 1.1l-1.5 1.5c-.2.2-.3.5-.3.8v2.2c0 .3.2.5.5.4C17 18.5 20 14.5 20 10c0-5-4-8-8-8zm-1 5c0-.6.4-1 1-1s1 .4 1 1v4c0 .6-.4 1-1 1s-1-.4-1-1V7z"/>
+                </svg>
+                <span>SaveBite</span>
+            </a>
+            
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="marketplace.html">Marketplace</a></li>
+                    <li><a href="impact.html">Eco Impact</a></li>
+                    <li><a href="restaurant.html" class="active">For Business</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                </ul>
+            </nav>
+            
+            <div class="nav-cta">
+                <a href="marketplace.html" class="btn btn-primary clickable">Rescue Food Now</a>
+            </div>
+            
+            <button class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Main double column Dashboard Simulator Layout -->
+    <div class="dashboard-layout">
+        
+        <!-- Left Sidebar Navigation -->
+        <aside class="dash-sidebar reveal-left active">
+            <div>
+                <h4 style="font-size: 0.85rem; text-transform: uppercase; color: var(--text-muted); margin-bottom: 20px; font-weight: 700; letter-spacing: 1px;">Partner Portal</h4>
+                <ul class="dash-sidebar-menu">
+                    <li class="dash-menu-item active">
+                        <a href="#dash-top">
+                            <svg viewBox="0 0 24 24"><path d="M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z"/></svg>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="dash-menu-item">
+                        <a href="#active-listings-anchor">
+                            <svg viewBox="0 0 24 24"><path d="M4 15h16v-2H4v2zm0 4h16v-2H4v2zm0-8h16V9H4v2zm0-6v2h16V5H4z"/></svg>
+                            <span>My Inventory</span>
+                        </a>
+                    </li>
+                    <li class="dash-menu-item">
+                        <a href="#upload-listing-anchor">
+                            <svg viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
+                            <span>Add Surplus</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="glass-card" style="margin-top: auto; padding: 20px; background-color: var(--primary-light); text-align: center;">
+                <h5 style="font-size: 0.9rem; margin-bottom: 8px;">Circular Store</h5>
+                <p style="font-size: 0.75rem; color: var(--text-muted); line-height: 1.4;">Verify your active eco-rating to claim municipal tax cuts!</p>
+                <span class="section-badge" style="margin-top: 12px; margin-bottom: 0; font-size: 0.7rem; padding: 4px 10px;">9.6 Gold</span>
+            </div>
+        </aside>
+        
+        <!-- Right Content Work Area -->
+        <main class="dash-content reveal active" id="dash-top">
+            
+            <!-- Dashboard Welcome Banner -->
+            <div class="dash-welcome">
+                <div>
+                    <h1 style="font-size: 2.2rem; font-family:'Outfit';">La Parisienne Boulangerie</h1>
+                    <p style="color: var(--text-muted); font-size: 0.95rem; margin-top: 4px;">Welcome back! You have active closing hours surpluses listing live.</p>
+                </div>
+                <div style="display: flex; gap: 12px;">
+                    <a href="#upload-listing-anchor" class="btn btn-primary clickable">
+                        <svg viewBox="0 0 24 24" style="width:16px; height:16px; fill:none; stroke:currentColor; stroke-width:3px;"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
+                        List Surplus Food
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Analytics Cards Grid -->
+            <div class="dash-stats-grid">
+                <div class="dash-stat-card">
+                    <div class="dash-stat-icon" style="background-color: var(--primary-light); color: var(--primary);">
+                        <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17h-2v-2h2v2zm0-4h-2V7h2v8z"/></svg>
+                    </div>
+                    <div>
+                        <div class="dash-stat-val" id="dash-earnings">Rp 175.000</div>
+                        <span class="dash-stat-label">Rescued Earnings</span>
+                    </div>
+                </div>
+
+                <div class="dash-stat-card">
+                    <div class="dash-stat-icon" style="background-color: var(--accent-light); color: var(--accent);">
+                        <svg viewBox="0 0 24 24"><path d="M12 2c-4.97 0-9 4.03-9 9 0 2.12.74 4.07 1.97 5.61L4.35 19.4c-.39.39-.39 1.02 0 1.41.39.39 1.02.39 1.41 0l1.9-1.9C9.93 19.53 10.93 20 12 20c4.97 0 9-4.03 9-9s-4.03-9-9-9zm0 15c-3.31 0-6-2.69-6-6s2.69-6 6-6 6 2.69 6 6-2.69 6-6 6z"/></svg>
+                    </div>
+                    <div>
+                        <div class="dash-stat-val" id="dash-saved">18.5 kg</div>
+                        <span class="dash-stat-label">Rescued weight (kg)</span>
+                    </div>
+                </div>
+
+                <div class="dash-stat-card">
+                    <div class="dash-stat-icon" style="background-color: var(--primary-light); color: var(--primary);">
+                        <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17h-2v-2h2v2zm0-4h-2V7h2v8z"/></svg>
+                    </div>
+                    <div>
+                        <div class="dash-stat-val" id="dash-active-count">2</div>
+                        <span class="dash-stat-label">Active Listings</span>
+                    </div>
+                </div>
+
+                <div class="dash-stat-card">
+                    <div class="dash-stat-icon" style="background-color: var(--accent-light); color: var(--accent);">
+                        <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17h-2v-2h2v2zm0-4h-2V7h2v8z"/></svg>
+                    </div>
+                    <div>
+                        <div class="dash-stat-val" id="dash-co2">46.2 kg</div>
+                        <span class="dash-stat-label">CO2 Prevented</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Active listings Inventory Workspace -->
+            <div id="active-listings-anchor" style="padding-top: 20px; margin-bottom: 50px;">
+                <h3 style="font-size: 1.4rem; margin-bottom: 24px; font-family:'Outfit';">Simulated Live Inventory Grid</h3>
+                <div class="grid-3" id="inventory-grid">
+                    <!-- Loaded dynamically via restaurant.js simulator -->
+                </div>
+            </div>
+            
+            <!-- Sleek Glassmorphic Upload Wizard Form -->
+            <div id="upload-listing-anchor" style="padding-top: 20px;">
+                <div class="dash-form-card">
+                    <h3 style="font-size: 1.4rem; margin-bottom: 6px; font-family:'Outfit';">List Surplus Closing Food Bundle</h3>
+                    <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 30px;">Input items going unsold tonight to instantly offer them on SaveBite marketplace.</p>
+                    
+                    <form id="upload-surplus-form">
+                        <div class="dash-form-grid">
+                            <div class="form-group">
+                                <label for="food-name">Item / Bundle Name</label>
+                                <input type="text" id="food-name" placeholder="e.g. Closing Danish Pastry Set (Box of 5)" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="food-category">Food Category</label>
+                                <select id="food-category" required>
+                                    <option value="Bakery">Bakery & Bread</option>
+                                    <option value="Restaurant">Restaurant Meals</option>
+                                    <option value="Buffet">Buffet Specials</option>
+                                    <option value="Grocery">Fresh Groceries</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="food-price-orig">Original Value Price (Rp)</label>
+                                <input type="number" id="food-price-orig" placeholder="e.g. 100000" min="5000" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="food-price-disc">Discounted Sale Price (Rp)</label>
+                                <input type="number" id="food-price-disc" placeholder="e.g. 35000" min="5000" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="food-qty">Quantity Available (pcs)</label>
+                                <input type="number" id="food-qty" placeholder="e.g. 3" min="1" max="10" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="food-expiry">Pickup Window / Expiry (minutes from now)</label>
+                                <input type="number" id="food-expiry" placeholder="e.g. 60" min="15" max="360" required>
+                            </div>
+                        </div>
+                        
+                        <div style="text-align: right;">
+                            <button type="submit" class="btn btn-primary clickable" style="padding: 12px 32px;">List Live & Save Food</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            
+        </main>
+        
+    </div>
+
+    <!-- Footer -->
+    <footer style="margin-top: 0;">
+        <div class="container footer-grid">
+            <div class="footer-info">
+                <a href="index.html" class="logo">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M12 2C8 2 4 5 4 10c0 4.5 3 8.5 7.5 9.8.3.1.5-.1.5-.4v-2.2c0-.3-.1-.6-.3-.8l-1.5-1.5c-.3-.3-.3-.8 0-1.1l.6-.6c.3-.3.8-.3 1.1 0l1.5 1.5c.2.2.5.3.8.3h.2c.3 0 .6-.1.8-.3l1.5-1.5c.3-.3.8-.3 1.1 0l.6.6c.3.3.3.8 0 1.1l-1.5 1.5c-.2.2-.3.5-.3.8v2.2c0 .3.2.5.5.4C17 18.5 20 14.5 20 10c0-5-4-8-8-8zm-1 5c0-.6.4-1 1-1s1 .4 1 1v4c0 .6-.4 1-1 1s-1-.4-1-1V7z"/>
+                    </svg>
+                    <span>SaveBite</span>
+                </a>
+                <p class="footer-desc">Connect and rescue surplus organic foods from local bakeries and premium eateries. Eat well, spend less, save the planet.</p>
+                <div class="footer-socials">
+                    <a href="#" class="footer-social-link">
+                        <svg viewBox="0 0 24 24"><path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1v2h3v3h-3v6.95c4.56-.93 8-4.96 8-9.75z"/></svg>
+                    </a>
+                    <a href="#" class="footer-social-link">
+                        <svg viewBox="0 0 24 24"><path d="M12.31 6c.07-.02.15-.04.22-.05.3-.05.6-.08.9-.08 2.02 0 3.82.82 5.12 2.13l.02.02c1.3 1.3 2.12 3.1 2.12 5.12 0 1.15-.27 2.24-.76 3.2l-.02.04c-.9 1.76-2.5 3.05-4.41 3.48-.37.08-.75.12-1.15.12-.42 0-.83-.05-1.23-.13-1.85-.4-3.41-1.63-4.32-3.3l-.04-.07c-.45-.92-.7-1.95-.7-3.04 0-1.97.8-3.75 2.1-5.04C10.12 6.8 11.16 6.3 12.31 6z"/></svg>
+                    </a>
+                    <a href="#" class="footer-social-link">
+                        <svg viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.779-1.75-1.75s.784-1.75 1.75-1.75 1.75.779 1.75 1.75-.784 1.75-1.75 1.75zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                    </a>
+                </div>
+            </div>
+            
+            <div>
+                <h4 class="footer-column-title">SaveBite</h4>
+                <ul class="footer-links">
+                    <li><a href="about.html">Our Vision</a></li>
+                    <li><a href="marketplace.html">Food Marketplace</a></li>
+                    <li><a href="impact.html">Sustainability Stats</a></li>
+                    <li><a href="restaurant.html">Simulate Dashboard</a></li>
+                </ul>
+            </div>
+            
+            <div>
+                <h4 class="footer-column-title">Legal</h4>
+                <ul class="footer-links">
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                    <li><a href="#">Partner Agreement</a></li>
+                    <li><a href="#">Food Safety Standards</a></li>
+                </ul>
+            </div>
+            
+            <div>
+                <h4 class="footer-column-title">Stay Updated</h4>
+                <p class="footer-desc" style="font-size: 0.85rem; margin-bottom: 12px;">Subscribe to our sustainability newsletter and weekly discount highlights.</p>
+                <div style="display: flex; gap: 8px; border: 1.5px solid var(--grey-medium); border-radius: var(--radius-full); padding: 4px; background-color: var(--bg-cream);">
+                    <input type="email" placeholder="Your email..." style="border:none; outline:none; background:none; padding-left:12px; flex-grow:1; font-size:0.85rem;">
+                    <button class="btn btn-primary clickable" style="padding: 6px 16px; font-size: 0.85rem;">Join</button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="container footer-bottom">
+            <p>&copy; 2026 SaveBite Platform. All rights reserved.</p>
+            <p>Built with 💚 for National Web Design Competition.</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/main.js"></script>
+    <script src="js/restaurant.js"></script>
+</body>
+</html>
