@@ -232,6 +232,35 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // Store Profile Settings Form Submit handler
+    window.handleStoreProfileSave = function(e) {
+        e.preventDefault();
+        
+        const storeName = document.getElementById('store-name').value;
+        
+        // Dynamically update UI titles with new name
+        const welcomeTitle = document.querySelector('.dash-welcome h1');
+        if (welcomeTitle) welcomeTitle.textContent = storeName;
+        
+        const navMerchantName = document.getElementById('nav-merchant-name');
+        if (navMerchantName) {
+            // Get first two words or short form for nav
+            const shortName = storeName.split(' ').slice(0, 2).join(' ');
+            navMerchantName.textContent = shortName;
+        }
+
+        const avatarCircle = document.querySelector('.user-avatar-badge div');
+        if (avatarCircle && storeName) {
+            // Take initials
+            const initials = storeName.split(' ').map(n => n[0]).slice(0, 2).join('').toUpperCase();
+            avatarCircle.textContent = initials;
+        }
+        
+        if (window.showSaveBiteToast) {
+            window.showSaveBiteToast("Profil toko berhasil disimpan!", "success");
+        }
+    };
+
     // Trigger Initial Render
     renderInventory();
 
