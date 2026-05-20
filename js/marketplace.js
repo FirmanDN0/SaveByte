@@ -469,15 +469,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     window.checkoutCart = function() {
         if (cart.length === 0) return;
-        
-        if (window.showSaveBiteToast) {
-            window.showSaveBiteToast("Rescue claimed! Check your pickup timer receipts.", "success");
-        }
-        
-        cart = [];
-        localStorage.setItem('savebite_cart', JSON.stringify(cart));
-        updateCartUI();
         closeCartDrawer();
+        window.location.href = 'checkout.html';
     };
 
     /* ==========================================================================

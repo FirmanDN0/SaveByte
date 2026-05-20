@@ -73,6 +73,14 @@ Halaman profil interaktif bagi konsumen penyelamat (*rescuers*) setelah melakuka
   * **Rescuer Gamification**: Papan medali lencana hijau (Eco Badges) yang menyala sesuai tingkat keberhasilan kontribusi pencegahan emisi karbon.
   * **Dynamic Claim Ticket**: Menampilkan kupon penyelamatan boks makanan aktif yang memicu pop-up QR Code & PIN verifikasi kasir saat diklik.
 
+### 9. 💳 Simulasi Klaim / Checkout & Success (`checkout.html`)
+Halaman simulasi transaksi penyelamatan pangan surplus yang terhubung dengan keranjang belanja (*localStorage*).
+* **Tujuan**: Menghadirkan simulasi pembayaran instan dan penerbitan tiket klaim resmi.
+* **Fitur Unggulan**:
+  * **Dynamic Cart Binding**: Membaca otomatis daftar belanja aktif dari marketplace serta mengkalkulasikan nominal diskon dan total tagihan secara langsung.
+  * **Simulated Green Transaction**: Animasi loading daun berputar saat memproses klaim, diikuti transisi perpindahan panel sukses yang elegan.
+  * **Claim Voucher Generator**: Kartu verifikasi tiket sukses yang memuat PIN dinamis untuk ditunjukkan kepada petugas kafe/restoran.
+
 ---
 
 ## 🎨 Keunggulan Desain & Interaksi (Aesthetic Tokens)
