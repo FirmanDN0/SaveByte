@@ -65,6 +65,14 @@ Halaman gerbang masuk dan pendaftaran dengan layout split-screen modern khas sta
   * **Interactive Credentials Fields**: Input dengan visual status interaktif, tombol toggle kata sandi (lihat/sembunyikan), dan tombol login sosial (Google & Apple).
   * **Toast Feedback loop**: Notifikasi toast interaktif yang mengalir mulus dengan Javascript untuk simulasi validasi pendaftaran dan login.
 
+### 8. 👤 Portofolio Dampak & Profil Pengguna (`profile.html`)
+Halaman profil interaktif bagi konsumen penyelamat (*rescuers*) setelah melakukan simulasi masuk.
+* **Tujuan**: Menyajikan portofolio kontribusi lingkungan pribadi dan mengelola klaim aktif makanan surplus.
+* **Fitur Unggulan**:
+  * **Interactive Tab Panels**: Navigasi panel samping yang responsif (Ikhtisar Profil, Lencana Eco, Riwayat Pesanan, Pengaturan Akun).
+  * **Rescuer Gamification**: Papan medali lencana hijau (Eco Badges) yang menyala sesuai tingkat keberhasilan kontribusi pencegahan emisi karbon.
+  * **Dynamic Claim Ticket**: Menampilkan kupon penyelamatan boks makanan aktif yang memicu pop-up QR Code & PIN verifikasi kasir saat diklik.
+
 ---
 
 ## 🎨 Keunggulan Desain & Interaksi (Aesthetic Tokens)

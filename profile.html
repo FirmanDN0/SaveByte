@@ -1,0 +1,944 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Profile - SaveBite platform</title>
+    <meta name="description" content="View your SaveBite personal impact portfolio, check active food rescue tickets, browse earned sustainability badges, and edit your profile settings.">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/main.css">
+    
+    <style>
+        /* Custom Profile Layout Styles */
+        .profile-container {
+            padding-top: 140px;
+            padding-bottom: 80px;
+            background-color: var(--bg-cream);
+        }
+
+        .profile-hero {
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);
+            border-radius: var(--radius-lg);
+            color: var(--bg-white);
+            padding: 50px 40px;
+            margin-bottom: 40px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+        }
+
+        .profile-hero::before {
+            content: '';
+            position: absolute;
+            top: -20%;
+            right: -10%;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(255,255,255,0.08) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .profile-hero-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 30px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .profile-user-info {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+        }
+
+        .profile-avatar-large {
+            width: 90px;
+            height: 90px;
+            background-color: var(--accent);
+            color: var(--bg-white);
+            font-size: 2.25rem;
+            font-weight: 800;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 4px solid rgba(255, 255, 255, 0.2);
+            font-family: 'Outfit', sans-serif;
+            box-shadow: var(--shadow-md);
+        }
+
+        .profile-user-meta h2 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 2.25rem;
+            font-weight: 800;
+            margin-bottom: 6px;
+            line-height: 1.2;
+        }
+
+        .profile-user-rank {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background-color: rgba(255, 255, 255, 0.12);
+            padding: 6px 14px;
+            border-radius: var(--radius-full);
+            font-size: 0.85rem;
+            font-weight: 700;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .profile-rank-progress {
+            margin-top: 12px;
+            max-width: 250px;
+        }
+
+        .progress-bar-bg {
+            background-color: rgba(255, 255, 255, 0.2);
+            height: 8px;
+            border-radius: var(--radius-full);
+            overflow: hidden;
+            margin-bottom: 4px;
+        }
+
+        .progress-bar-fill {
+            background-color: var(--accent);
+            height: 100%;
+            width: 75%;
+            border-radius: var(--radius-full);
+        }
+
+        .progress-text {
+            font-size: 0.75rem;
+            color: var(--grey-light);
+            font-weight: 600;
+        }
+
+        .profile-quick-stats {
+            display: flex;
+            gap: 16px;
+        }
+
+        .profile-quick-stat-card {
+            background-color: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: var(--radius-md);
+            padding: 20px 24px;
+            text-align: center;
+            min-width: 140px;
+        }
+
+        .profile-quick-stat-card h4 {
+            font-size: 1.75rem;
+            font-weight: 800;
+            color: var(--accent);
+            margin-bottom: 4px;
+            font-family: 'Outfit', sans-serif;
+        }
+
+        .profile-quick-stat-card p {
+            font-size: 0.8rem;
+            color: var(--grey-light);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-weight: 600;
+        }
+
+        /* Layout Grid */
+        .profile-grid {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 40px;
+        }
+
+        /* Sidebar Tabs */
+        .profile-sidebar-nav {
+            background-color: var(--bg-white);
+            border-radius: var(--radius-md);
+            padding: 24px 16px;
+            box-shadow: var(--shadow-sm);
+            border: 1.5px solid var(--grey-light);
+            height: fit-content;
+        }
+
+        .profile-nav-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            width: 100%;
+            padding: 14px 16px;
+            border-radius: var(--radius-sm);
+            border: none;
+            background: none;
+            color: var(--text-dark);
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-align: left;
+            cursor: pointer;
+            transition: all var(--transition-fast);
+            margin-bottom: 8px;
+        }
+
+        .profile-nav-item svg {
+            width: 20px;
+            height: 20px;
+            fill: var(--text-muted);
+            transition: fill var(--transition-fast);
+        }
+
+        .profile-nav-item:hover, .profile-nav-item.active {
+            background-color: var(--primary-light);
+            color: var(--primary);
+        }
+
+        .profile-nav-item:hover svg, .profile-nav-item.active svg {
+            fill: var(--primary);
+        }
+
+        /* Content Panel */
+        .profile-content-panel {
+            background-color: var(--bg-white);
+            border-radius: var(--radius-md);
+            padding: 40px;
+            box-shadow: var(--shadow-sm);
+            border: 1.5px solid var(--grey-light);
+            min-height: 480px;
+        }
+
+        .tab-panel {
+            display: none;
+        }
+
+        .tab-panel.active {
+            display: block;
+            animation: fadeIn 0.4s ease-out forwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .tab-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.75rem;
+            font-weight: 800;
+            color: var(--text-dark);
+            margin-bottom: 8px;
+        }
+
+        .tab-subtitle {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            margin-bottom: 30px;
+        }
+
+        /* Active Ticket card */
+        .ticket-card {
+            background-color: var(--bg-cream);
+            border: 2px dashed var(--grey-medium);
+            border-radius: var(--radius-md);
+            padding: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+            position: relative;
+        }
+
+        .ticket-info h4 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.35rem;
+            font-weight: 800;
+            color: var(--text-dark);
+            margin-bottom: 6px;
+        }
+
+        .ticket-merchant {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-weight: 700;
+            color: var(--primary);
+            font-size: 0.95rem;
+            margin-bottom: 16px;
+        }
+
+        .ticket-meta-row {
+            display: flex;
+            gap: 24px;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        .ticket-meta-item strong {
+            color: var(--text-dark);
+        }
+
+        .ticket-action {
+            text-align: center;
+        }
+
+        /* Badges Grid */
+        .badges-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            gap: 24px;
+        }
+
+        .badge-item {
+            background-color: var(--bg-cream);
+            border: 1.5px solid var(--grey-light);
+            border-radius: var(--radius-md);
+            padding: 24px 16px;
+            text-align: center;
+            transition: all var(--transition-fast);
+        }
+
+        .badge-item:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary-light);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .badge-icon-wrapper {
+            width: 70px;
+            height: 70px;
+            background-color: var(--bg-white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 16px;
+            box-shadow: var(--shadow-sm);
+            position: relative;
+        }
+
+        .badge-icon-wrapper svg {
+            width: 36px;
+            height: 36px;
+            fill: var(--primary);
+        }
+
+        .badge-item.locked {
+            opacity: 0.65;
+        }
+
+        .badge-item.locked .badge-icon-wrapper svg {
+            fill: var(--grey-medium);
+        }
+
+        .lock-indicator {
+            position: absolute;
+            bottom: -4px;
+            right: -4px;
+            width: 22px;
+            height: 22px;
+            background-color: var(--accent);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid var(--bg-white);
+        }
+
+        .lock-indicator svg {
+            width: 10px;
+            height: 10px;
+            fill: var(--bg-white);
+        }
+
+        .badge-title {
+            font-size: 0.9rem;
+            font-weight: 800;
+            color: var(--text-dark);
+            margin-bottom: 4px;
+        }
+
+        .badge-desc {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            line-height: 1.3;
+        }
+
+        /* History Table */
+        .history-table-wrapper {
+            overflow-x: auto;
+        }
+
+        .history-table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+            font-size: 0.95rem;
+        }
+
+        .history-table th {
+            padding: 16px;
+            border-bottom: 2px solid var(--grey-light);
+            color: var(--text-muted);
+            font-weight: 700;
+        }
+
+        .history-table td {
+            padding: 16px;
+            border-bottom: 1px solid var(--grey-light);
+            color: var(--text-dark);
+        }
+
+        .status-pill {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: var(--radius-full);
+            font-size: 0.8rem;
+            font-weight: 700;
+        }
+
+        .status-pill.success {
+            background-color: var(--primary-light);
+            color: var(--primary);
+        }
+
+        .status-pill.cancelled {
+            background-color: var(--accent-light);
+            color: var(--accent-dark);
+        }
+
+        /* Modal barcode styling */
+        .modal-barcode-body {
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        .barcode-img {
+            max-width: 180px;
+            margin-bottom: 16px;
+            border-radius: var(--radius-sm);
+        }
+
+        .barcode-code {
+            font-family: monospace;
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--primary);
+            letter-spacing: 2px;
+            margin-bottom: 8px;
+        }
+
+        /* Form styling */
+        .profile-form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 24px;
+        }
+
+        .form-group {
+            margin-bottom: 16px;
+        }
+
+        .form-label {
+            display: block;
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 6px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .profile-input {
+            width: 100%;
+            padding: 12px 16px;
+            border-radius: var(--radius-sm);
+            border: 1.5px solid var(--grey-medium);
+            background-color: var(--bg-cream);
+            color: var(--text-dark);
+            font-family: inherit;
+            font-size: 0.95rem;
+            outline: none;
+            transition: all var(--transition-fast);
+        }
+
+        .profile-input:focus {
+            border-color: var(--primary);
+            background-color: var(--bg-white);
+            box-shadow: 0 0 0 4px var(--primary-light);
+        }
+
+        /* Responsive Breakpoints */
+        @media (max-width: 991px) {
+            .profile-grid {
+                grid-template-columns: 1fr;
+            }
+            .profile-hero {
+                padding: 30px 20px;
+            }
+            .profile-hero-content {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .profile-quick-stats {
+                width: 100%;
+                overflow-x: auto;
+            }
+            .ticket-card {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .ticket-action {
+                width: 100%;
+            }
+            .ticket-action button {
+                width: 100%;
+            }
+            .profile-form-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Loading Animation Screen -->
+    <div class="loader-wrapper">
+        <div class="loader-content">
+            <div class="loader-logo">
+                <svg viewBox="0 0 24 24">
+                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2V7zm0 8h2v2h-2v-2z"/>
+                </svg>
+                <span>SaveBite</span>
+            </div>
+            <div class="loader-bar">
+                <div class="loader-progress"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header & Navigation -->
+    <header>
+        <div class="navbar-container">
+            <a href="index.html" class="logo">
+                <svg viewBox="0 0 24 24">
+                    <path d="M12 2C8 2 4 5 4 10c0 4.5 3 8.5 7.5 9.8.3.1.5-.1.5-.4v-2.2c0-.3-.1-.6-.3-.8l-1.5-1.5c-.3-.3-.3-.8 0-1.1l.6-.6c.3-.3.8-.3 1.1 0l1.5 1.5c.2.2.5.3.8.3h.2c.3 0 .6-.1.8-.3l1.5-1.5c.3-.3.8-.3 1.1 0l.6.6c.3.3.3.8 0 1.1l-1.5 1.5c-.2.2-.3.5-.3.8v2.2c0 .3.2.5.5.4C17 18.5 20 14.5 20 10c0-5-4-8-8-8zm-1 5c0-.6.4-1 1-1s1 .4 1 1v4c0 .6-.4 1-1 1s-1-.4-1-1V7z"/>
+                </svg>
+                <span>SaveBite</span>
+            </a>
+            
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="marketplace.html">Marketplace</a></li>
+                    <li><a href="impact.html">Eco Impact</a></li>
+                    <li><a href="restaurant.html">For Business</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                </ul>
+            </nav>
+            
+            <!-- Simulated logged in avatar badge -->
+            <div class="nav-cta">
+                <a href="profile.html" class="user-avatar-badge clickable" style="display: flex; align-items: center; gap: 10px; text-decoration: none;">
+                    <div style="width: 40px; height: 40px; background-color: var(--primary-light); color: var(--primary); font-weight: 700; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.95rem; border: 2px solid var(--primary); font-family: 'Outfit';">FN</div>
+                    <span style="font-weight: 700; color: var(--text-dark); font-size: 0.9rem; display: inline-block;">Firman Dwi</span>
+                </a>
+            </div>
+            
+            <button class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="profile-container">
+        <div class="container">
+            
+            <!-- Welcome Hero Card -->
+            <div class="profile-hero">
+                <div class="profile-hero-content">
+                    <div class="profile-user-info">
+                        <div class="profile-avatar-large">FN</div>
+                        <div class="profile-user-meta">
+                            <h2>Halo, Firman Dwi Nugraha! 👋</h2>
+                            <div style="display: flex; align-items: center; gap: 16px; flex-wrap: wrap; margin-top: 8px;">
+                                <span class="profile-user-rank">
+                                    <svg viewBox="0 0 24 24" style="width:16px; height:16px; fill:var(--accent);"><path d="M12 2L1 21h22L12 2zm0 3.99L19.53 19H4.47L12 5.99zM13 16h-2v2h2v-2zm0-6h-2v4h2v-4z"/></svg>
+                                    Level 4: Earth Guardian
+                                </span>
+                                <div class="profile-rank-progress">
+                                    <div class="progress-bar-bg">
+                                        <div class="progress-bar-fill"></div>
+                                    </div>
+                                    <div class="progress-text">150 XP lagi untuk naik Level 5</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="profile-quick-stats">
+                        <div class="profile-quick-stat-card">
+                            <h4>32</h4>
+                            <p>Box Diselamatkan</p>
+                        </div>
+                        <div class="profile-quick-stat-card">
+                            <h4>Rp 480k</h4>
+                            <p>Uang Dihemat</p>
+                        </div>
+                        <div class="profile-quick-stat-card">
+                            <h4>80 Kg</h4>
+                            <p>CO2 Dicegah</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Profile Grid Layout -->
+            <div class="profile-grid">
+                
+                <!-- Left Sidebar Nav -->
+                <aside class="profile-sidebar-nav">
+                    <button class="profile-nav-item active" onclick="switchProfileTab('overview', this)">
+                        <svg viewBox="0 0 24 24"><path d="M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z"/></svg>
+                        Ikhtisar Profil
+                    </button>
+                    <button class="profile-nav-item" onclick="switchProfileTab('badges', this)">
+                        <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17h-2v-2h2v2zm2.07-7.75l-.9.92C13.45 12.9 13 13.5 13 15h-2v-.5c0-1.1.45-2.1 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41 0-1.1-.9-2-2-2s-2 .9-2 2H7c0-2.76 2.24-5 5-5s5 2.24 5 5c0 1.04-.42 1.99-1.07 2.75z"/></svg>
+                        Eco Lencana
+                    </button>
+                    <button class="profile-nav-item" onclick="switchProfileTab('history', this)">
+                        <svg viewBox="0 0 24 24"><path d="M13 3c-4.97 0-9 4.03-9 9H1l3.89 3.89.07.14L9 12H6c0-3.87 3.13-7 7-7s7 3.13 7 7-3.13 7-7 7c-1.93 0-3.68-.79-4.94-2.06l-1.42 1.42C8.27 19.99 10.51 21 13 21c4.97 0 9-4.03 9-9s-4.03-9-9-9zm-1 5v5l4.28 2.54.72-1.21-3.5-2.08V8H12z"/></svg>
+                        Riwayat Pesanan
+                    </button>
+                    <button class="profile-nav-item" onclick="switchProfileTab('settings', this)">
+                        <svg viewBox="0 0 24 24"><path d="M19.43 12.98c.04-.32.07-.64.07-.98s-.03-.66-.07-.98l2.11-1.65c.19-.15.24-.42.12-.64l-2-3.46c-.12-.22-.39-.3-.61-.22l-2.49 1c-.52-.4-1.08-.73-1.69-.98l-.38-2.65C14.46 2.18 14.25 2 14 2h-4c-.25 0-.46.18-.49.42l-.38 2.65c-.61.25-1.17.59-1.69.98l-2.49-1c-.23-.09-.49 0-.61.22l-2 3.46c-.13.22-.07.49.12.64l2.11 1.65c-.04.32-.07.65-.07.98s.03.66.07.98l-2.11 1.65c-.19.15-.24.42-.12.64l2 3.46c.12.22.39.3.61.22l2.49-1c.52.4 1.08.73 1.69.98l.38 2.65c.03.24.24.42.49.42h4c.25 0 .46-.18.49-.42l.38-2.65c.61-.25 1.17-.59 1.69-.98l2.49 1c.23.09.49 0 .61-.22l2-3.46c.12-.22.07-.49-.12-.64l-2.11-1.65zM12 15.5c-1.93 0-3.5-1.57-3.5-3.5s1.57-3.5 3.5-3.5 3.5 1.57 3.5 3.5-1.57 3.5-3.5 3.5z"/></svg>
+                        Pengaturan Akun
+                    </button>
+                </aside>
+
+                <!-- Right Side Interactive Tab Panels -->
+                <section class="profile-content-panel">
+                    
+                    <!-- Tab 1: Overview & Active Ticket -->
+                    <div id="overview" class="tab-panel active">
+                        <h3 class="tab-title">Ikhtisar Penyelamatan</h3>
+                        <p class="tab-subtitle">Klaim aktif Anda yang siap diambil hari ini di lokasi mitra.</p>
+                        
+                        <div class="ticket-card">
+                            <div class="ticket-info">
+                                <span class="status-pill success" style="margin-bottom: 12px;">Siap Diambil</span>
+                                <h4>2x Roti & Pastry Box Spesial</h4>
+                                <div class="ticket-merchant">
+                                    <svg viewBox="0 0 24 24" style="width:16px; height:16px; fill:var(--primary);"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                                    Roti Gembong Kota Barat - Solo
+                                </div>
+                                <div class="ticket-meta-row">
+                                    <div class="ticket-meta-item">Batas Waktu: <strong>19:00 - 21:00 Hari Ini</strong></div>
+                                    <div class="ticket-meta-item">Kode Order: <strong>SB-9941</strong></div>
+                                </div>
+                            </div>
+                            
+                            <div class="ticket-action">
+                                <button class="btn btn-primary clickable" onclick="openBarcodeModal()">Tampilkan Kode Klaim</button>
+                                <p style="font-size: 0.75rem; color: var(--text-muted); margin-top: 8px;">Tunjukkan ke kasir saat mengambil</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tab 2: Badges/Gamification -->
+                    <div id="badges" class="tab-panel">
+                        <h3 class="tab-title">Eco Lencana Kehormatan</h3>
+                        <p class="tab-subtitle">Lencana yang Anda kumpulkan dari kontribusi menyelamatkan pangan surplus.</p>
+                        
+                        <div class="badges-grid">
+                            <div class="badge-item">
+                                <div class="badge-icon-wrapper">
+                                    <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+                                </div>
+                                <div class="badge-title">Carbon Hero</div>
+                                <div class="badge-desc">Mencegah >50 kg emisi CO2 landfill.</div>
+                            </div>
+                            
+                            <div class="badge-item">
+                                <div class="badge-icon-wrapper">
+                                    <svg viewBox="0 0 24 24"><path d="M12 3L2 12h3v8h6v-6h2v6h6v-8h3L12 3z"/></svg>
+                                </div>
+                                <div class="badge-title">Local Savior</div>
+                                <div class="badge-desc">Membantu 5+ toko lokal sekitar.</div>
+                            </div>
+
+                            <div class="badge-item">
+                                <div class="badge-icon-wrapper">
+                                    <svg viewBox="0 0 24 24"><path d="M12 2c1.1 0 2 .9 2 2v1.08c1.66.45 3 1.93 3 3.67 0 1.25-.5 2.45-1.41 3.32l-1.31 1.25c-.21.2-.28.51-.18.78.1.28.37.47.67.47H19c1.1 0 2 .9 2 2v4c0 1.1-.9 2-2 2H5c-1.1 0-2-.9-2-2v-4c0-1.1.9-2 2-2h3.23c.3 0 .57-.19.67-.47.1-.27.03-.58-.18-.78l-1.31-1.25C6.5 9.17 6 7.97 6 6.72c0-1.74 1.34-3.22 3-3.67V4c0-1.1.9-2 2-2z"/></svg>
+                                </div>
+                                <div class="badge-title">Sweet Tooth</div>
+                                <div class="badge-desc">Menyelamatkan 10+ boks roti/donat.</div>
+                            </div>
+
+                            <div class="badge-item locked">
+                                <div class="badge-icon-wrapper">
+                                    <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17h-2v-2h2v2zm2.07-7.75l-.9.92C13.45 12.9 13 13.5 13 15h-2v-.5c0-1.1.45-2.1 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41 0-1.1-.9-2-2-2s-2 .9-2 2H7c0-2.76 2.24-5 5-5s5 2.24 5 5c0 1.04-.42 1.99-1.07 2.75z"/></svg>
+                                    <div class="lock-indicator">
+                                        <svg viewBox="0 0 24 24"><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/></svg>
+                                    </div>
+                                </div>
+                                <div class="badge-title">Green Legend</div>
+                                <div class="badge-desc">Menyelamatkan 100+ boks makanan.</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tab 3: Rescue History -->
+                    <div id="history" class="tab-panel">
+                        <h3 class="tab-title">Riwayat Penyelamatan Makanan</h3>
+                        <p class="tab-subtitle">Daftar lengkap makanan surplus yang telah Anda selamatkan sebelumnya.</p>
+                        
+                        <div class="history-table-wrapper">
+                            <table class="history-table">
+                                <thead>
+                                    <tr>
+                                        <th>Tanggal</th>
+                                        <th>Item Makanan</th>
+                                        <th>Toko Mitra</th>
+                                        <th>Harga</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>15 Mei 2026</td>
+                                        <td>1x Surprise Bakery Box</td>
+                                        <td>BreadTalk - Solo Square</td>
+                                        <td>Rp 35.000</td>
+                                        <td><span class="status-pill success">Berhasil Diambil</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>10 Mei 2026</td>
+                                        <td>2x Dinner Surplus Pack</td>
+                                        <td>Warmindo Rasa Sayang</td>
+                                        <td>Rp 24.000</td>
+                                        <td><span class="status-pill success">Berhasil Diambil</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>02 Mei 2026</td>
+                                        <td>1x Sushi Party Set</td>
+                                        <td>Sushi Tei - Slamet Riyadi</td>
+                                        <td>Rp 65.000</td>
+                                        <td><span class="status-pill success">Berhasil Diambil</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>25 April 2026</td>
+                                        <td>1x Eco Lunch Bag</td>
+                                        <td>Dapur Sehat Organik</td>
+                                        <td>Rp 30.000</td>
+                                        <td><span class="status-pill cancelled">Dibatalkan</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Tab 4: Account Settings -->
+                    <div id="settings" class="tab-panel">
+                        <h3 class="tab-title">Pengaturan Akun</h3>
+                        <p class="tab-subtitle">Perbarui kredensial akun dan preferensi diet personal Anda.</p>
+                        
+                        <form id="settingsForm" onsubmit="handleSettingsSave(event)">
+                            <div class="profile-form-grid">
+                                <div class="form-group">
+                                    <label class="form-label" for="profileName">Nama Lengkap</label>
+                                    <input class="profile-input" type="text" id="profileName" value="Firman Dwi Nugraha">
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label" for="profileEmail">Alamat Email</label>
+                                    <input class="profile-input" type="email" id="profileEmail" value="firman.dwi@savebite.org" readonly>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label" for="profilePhone">Nomor Telepon</label>
+                                    <input class="profile-input" type="text" id="profilePhone" value="0812-3456-7890">
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label" for="profileDiet">Preferensi Diet</label>
+                                    <select class="profile-input" id="profileDiet">
+                                        <option value="none">Tanpa Batasan Diet</option>
+                                        <option value="vegetarian">Vegetarian</option>
+                                        <option value="halal" selected>Hanya Makanan Halal</option>
+                                        <option value="gluten-free">Bebas Gluten</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <button type="submit" class="btn btn-primary clickable">Simpan Perubahan</button>
+                        </form>
+                    </div>
+
+                </section>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Barcode / QR Code Pop-up Modal Container -->
+    <div id="barcodeModal" class="modal-wrapper" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(18, 36, 30, 0.6); z-index: 1000; align-items: center; justify-content: center;">
+        <div class="modal-content glass-card" style="max-width: 380px; width: 90%; background-color: var(--bg-white); border-radius: var(--radius-lg); padding: 32px; box-shadow: var(--shadow-lg); position: relative;">
+            <button onclick="closeBarcodeModal()" style="position: absolute; top: 16px; right: 16px; background: none; border: none; font-size: 1.5rem; cursor: pointer; color: var(--text-muted);">&times;</button>
+            
+            <div class="modal-barcode-body">
+                <span class="status-pill success" style="margin-bottom: 16px;">Tunjukkan Layar Ini</span>
+                <h3 style="font-family: 'Outfit'; font-weight: 800; margin-bottom: 8px;">Scan Tiket Klaim</h3>
+                <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 24px;">Kasir mitra restoran akan memindai kode di bawah ini untuk menyerahkan makanan surplus Anda.</p>
+                
+                <!-- Simulated high fidelity QR Code mockup using SVG -->
+                <div style="background-color: var(--grey-light); padding: 20px; border-radius: var(--radius-md); display: inline-block; margin-bottom: 20px; border: 1.5px solid var(--grey-medium);">
+                    <svg class="barcode-img" viewBox="0 0 100 100" style="width: 140px; height: 140px;">
+                        <!-- QR Code grid mockup path -->
+                        <path d="M0 0h30v30H0V0zm10 10v10h10V10H10zM70 0h30v30H70V0zm10 10v10h10V10H10zm0 60h30v30H70V70zm10 10v10h10V10H10zM0 70h30v30H0V70zm10 10v10h10V10H10z" fill="var(--primary-dark)"/>
+                        <path d="M40 10h10v10H40V10zm10 20h10v10H50V30zm-10 10h10v10H40V40zm20-30h10v10H60V10zm0 40h10v10H60V50zm-30 0h10v10H30V50zm20 10h10v10H50V60zm10 10h10v10H60V70zm-20 0h10v10H40V70zm10 10h10v10H50V80zm-10 0h10v10H40V80zm30-20h10v10H70V60zm-30-20h10v10H40V40z" fill="var(--primary-dark)"/>
+                    </svg>
+                </div>
+                
+                <div class="barcode-code">SB-9941</div>
+                <p style="font-size: 0.85rem; font-weight: 700; color: var(--text-dark);">PIN Verifikasi Kasir</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notification Toast -->
+    <div id="toast" class="toast-notification">
+        <span id="toastMessage">Profil berhasil diperbarui!</span>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container footer-grid">
+            <div>
+                <a href="index.html" class="logo" style="margin-bottom: 20px;">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M12 2C8 2 4 5 4 10c0 4.5 3 8.5 7.5 9.8.3.1.5-.1.5-.4v-2.2c0-.3-.1-.6-.3-.8l-1.5-1.5c-.3-.3-.3-.8 0-1.1l.6-.6c.3-.3.8-.3 1.1 0l1.5 1.5c.2.2.5.3.8.3h.2c.3 0 .6-.1.8-.3l1.5-1.5c.3-.3.8-.3 1.1 0l.6.6c.3.3.3.8 0 1.1l-1.5 1.5c-.2.2-.3.5-.3.8v2.2c0 .3.2.5.5.4C17 18.5 20 14.5 20 10c0-5-4-8-8-8zm-1 5c0-.6.4-1 1-1s1 .4 1 1v4c0 .6-.4 1-1 1s-1-.4-1-1V7z"/>
+                    </svg>
+                    <span>SaveBite</span>
+                </a>
+                <p class="footer-desc">Connect and rescue surplus organic foods from local bakeries and premium eateries. Eat well, spend less, save the planet.</p>
+                <div class="footer-socials">
+                    <a href="#" class="footer-social-link">
+                        <svg viewBox="0 0 24 24"><path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1v2h3v3h-3v6.95c4.56-.93 8-4.96 8-9.75z"/></svg>
+                    </a>
+                    <a href="#" class="footer-social-link">
+                        <svg viewBox="0 0 24 24"><path d="M12.31 6c.07-.02.15-.04.22-.05.3-.05.6-.08.9-.08 2.02 0 3.82.82 5.12 2.13l.02.02c1.3 1.3 2.12 3.1 2.12 5.12 0 1.15-.27 2.24-.76 3.2l-.02.04c-.9 1.76-2.5 3.05-4.41 3.48-.37.08-.75.12-1.15.12-.42 0-.83-.05-1.23-.13-1.85-.4-3.41-1.63-4.32-3.3l-.04-.07c-.45-.92-.7-1.95-.7-3.04 0-1.97.8-3.75 2.1-5.04C10.12 6.8 11.16 6.3 12.31 6z"/></svg>
+                    </a>
+                    <a href="#" class="footer-social-link">
+                        <svg viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.779-1.75-1.75s.784-1.75 1.75-1.75 1.75.779 1.75 1.75-.784 1.75-1.75 1.75zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                    </a>
+                </div>
+            </div>
+            
+            <div>
+                <h4 class="footer-column-title">SaveBite</h4>
+                <ul class="footer-links">
+                    <li><a href="about.html">Our Vision</a></li>
+                    <li><a href="marketplace.html">Food Marketplace</a></li>
+                    <li><a href="impact.html">Sustainability Stats</a></li>
+                    <li><a href="restaurant.html">Simulate Dashboard</a></li>
+                </ul>
+            </div>
+            
+            <div>
+                <h4 class="footer-column-title">Legal</h4>
+                <ul class="footer-links">
+                    <li><a href="privacy.html">Privacy Policy</a></li>
+                    <li><a href="terms.html">Terms of Service</a></li>
+                    <li><a href="partner-agreement.html">Partner Agreement</a></li>
+                    <li><a href="food-safety.html">Food Safety Standards</a></li>
+                </ul>
+            </div>
+            
+            <div>
+                <h4 class="footer-column-title">Stay Updated</h4>
+                <p class="footer-desc" style="font-size: 0.85rem; margin-bottom: 12px;">Subscribe to our sustainability newsletter and weekly discount highlights.</p>
+                <div style="display: flex; gap: 8px; border: 1.5px solid var(--grey-medium); border-radius: var(--radius-full); padding: 4px; background-color: var(--bg-cream);">
+                    <input type="email" placeholder="Your email..." style="border:none; outline:none; background:none; padding-left:12px; flex-grow:1; font-size:0.85rem;">
+                    <button class="btn btn-primary clickable" style="padding: 6px 16px; font-size: 0.85rem;">Join</button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="container footer-bottom">
+            <p>&copy; 2026 SaveBite Platform. All rights reserved.</p>
+            <p>Built with 💚 for National Web Design Competition.</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/main.js"></script>
+    <script>
+        // Tab switching function
+        function switchProfileTab(tabId, buttonElement) {
+            // Hide all tab panels
+            const panels = document.querySelectorAll('.tab-panel');
+            panels.forEach(panel => panel.classList.remove('active'));
+            
+            // Deactivate all sidebar nav buttons
+            const navButtons = document.querySelectorAll('.profile-nav-item');
+            navButtons.forEach(btn => btn.classList.remove('active'));
+            
+            // Show target panel and activate button
+            document.getElementById(tabId).classList.add('active');
+            buttonElement.classList.add('active');
+        }
+
+        // Show Barcode Modal function
+        function openBarcodeModal() {
+            const modal = document.getElementById('barcodeModal');
+            modal.style.display = 'flex';
+            document.body.style.overflow = 'hidden'; // Disable page scrolling
+        }
+
+        // Close Barcode Modal function
+        function closeBarcodeModal() {
+            const modal = document.getElementById('barcodeModal');
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto'; // Re-enable page scrolling
+        }
+
+        // Close barcode modal if clicked outside
+        window.onclick = function(event) {
+            const modal = document.getElementById('barcodeModal');
+            if (event.target === modal) {
+                closeBarcodeModal();
+            }
+        }
+
+        // Show Toast function
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            const toastMessage = document.getElementById('toastMessage');
+            toastMessage.textContent = message;
+            toast.classList.add('active');
+            setTimeout(() => {
+                toast.classList.remove('active');
+            }, 3000);
+        }
+
+        // Settings form submit simulation
+        function handleSettingsSave(e) {
+            e.preventDefault();
+            const name = document.getElementById('profileName').value;
+            showToast('Profil berhasil disimpan!');
+            
+            // Update user badge in header dynamically
+            const headerAvatarText = document.querySelector('.user-avatar-badge span');
+            if (headerAvatarText && name) {
+                // Get first name
+                const firstName = name.split(' ')[0];
+                headerAvatarText.textContent = firstName;
+            }
+        }
+    </script>
+</body>
+</html>
