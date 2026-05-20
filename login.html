@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign In - SaveBite platform</title>
+    <meta name="description" content="Sign in to SaveBite platform to rescue surplus food, track your environmental impact, or manage your restaurant partner dashboard.">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/main.css">
+    
+    <style>
+        /* Custom Auth Layout Styles */
+        .auth-wrapper {
+            min-height: 100vh;
+            display: flex;
+            background-color: var(--bg-cream);
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        .auth-side-panel {
+            flex: 1.1;
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);
+            color: var(--bg-white);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 60px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Organic decorative blob pattern */
+        .auth-side-panel::before {
+            content: '';
+            position: absolute;
+            top: -10%;
+            right: -10%;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(255,255,255,0.08) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .auth-side-panel::after {
+            content: '';
+            position: absolute;
+            bottom: -20%;
+            left: -10%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(255,255,255,0.05) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .auth-panel-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--bg-white);
+            text-decoration: none;
+            font-size: 1.5rem;
+            font-weight: 800;
+            font-family: 'Outfit', sans-serif;
+            z-index: 10;
+        }
+
+        .auth-panel-logo svg {
+            width: 32px;
+            height: 32px;
+            fill: var(--accent);
+        }
+
+        .auth-panel-content {
+            max-width: 480px;
+            margin: auto 0;
+            z-index: 10;
+        }
+
+        .auth-panel-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: 3rem;
+            line-height: 1.15;
+            font-weight: 800;
+            margin-bottom: 24px;
+        }
+
+        .auth-panel-desc {
+            font-size: 1.1rem;
+            color: var(--grey-light);
+            opacity: 0.9;
+            line-height: 1.6;
+            margin-bottom: 40px;
+        }
+
+        .auth-stats-card {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border-radius: var(--radius-md);
+            padding: 24px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .auth-stat-item h4 {
+            font-size: 1.75rem;
+            font-weight: 800;
+            color: var(--accent);
+            margin-bottom: 4px;
+            font-family: 'Outfit', sans-serif;
+        }
+
+        .auth-stat-item p {
+            font-size: 0.85rem;
+            color: var(--grey-light);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+        }
+
+        .auth-panel-footer {
+            z-index: 10;
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .auth-form-panel {
+            flex: 0.9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 60px 40px;
+            background-color: var(--bg-cream);
+        }
+
+        .auth-form-container {
+            width: 100%;
+            max-width: 420px;
+        }
+
+        .auth-form-header {
+            margin-bottom: 36px;
+        }
+
+        .auth-form-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: 2.25rem;
+            font-weight: 800;
+            color: var(--text-dark);
+            margin-bottom: 8px;
+        }
+
+        .auth-form-subtitle {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+        }
+
+        .auth-form-subtitle a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 700;
+            transition: color var(--transition-fast);
+        }
+
+        .auth-form-subtitle a:hover {
+            color: var(--accent);
+        }
+
+        .auth-social-buttons {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+
+        .btn-social {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 12px 16px;
+            border-radius: var(--radius-sm);
+            border: 1.5px solid var(--grey-medium);
+            background-color: var(--bg-white);
+            color: var(--text-dark);
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all var(--transition-fast);
+        }
+
+        .btn-social:hover {
+            background-color: var(--grey-light);
+            border-color: var(--text-muted);
+        }
+
+        .btn-social svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        .auth-divider {
+            display: flex;
+            align-items: center;
+            text-align: center;
+            margin: 24px 0;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .auth-divider::before,
+        .auth-divider::after {
+            content: '';
+            flex: 1;
+            border-bottom: 1.5px solid var(--grey-medium);
+        }
+
+        .auth-divider:not(:empty)::before {
+            margin-right: 12px;
+        }
+
+        .auth-divider:not(:empty)::after {
+            margin-left: 12px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .form-label {
+            display: block;
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .input-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .input-icon {
+            position: absolute;
+            left: 16px;
+            width: 20px;
+            height: 20px;
+            fill: var(--text-muted);
+            pointer-events: none;
+            transition: fill var(--transition-fast);
+        }
+
+        .auth-input {
+            width: 100%;
+            padding: 14px 16px 14px 48px;
+            border-radius: var(--radius-sm);
+            border: 1.5px solid var(--grey-medium);
+            background-color: var(--bg-white);
+            color: var(--text-dark);
+            font-family: inherit;
+            font-size: 0.95rem;
+            transition: all var(--transition-fast);
+            outline: none;
+        }
+
+        .auth-input:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 4px var(--primary-light);
+        }
+
+        .auth-input:focus + .input-icon {
+            fill: var(--primary);
+        }
+
+        .password-toggle {
+            position: absolute;
+            right: 16px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .password-toggle svg {
+            width: 20px;
+            height: 20px;
+            fill: var(--text-muted);
+            transition: fill var(--transition-fast);
+        }
+
+        .password-toggle:hover svg {
+            fill: var(--text-dark);
+        }
+
+        .auth-meta {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 28px;
+            font-size: 0.9rem;
+        }
+
+        .remember-me {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            font-weight: 500;
+        }
+
+        .remember-me input {
+            width: 16px;
+            height: 16px;
+            accent-color: var(--primary);
+            cursor: pointer;
+        }
+
+        .forgot-password {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color var(--transition-fast);
+        }
+
+        .forgot-password:hover {
+            color: var(--accent);
+        }
+
+        .btn-auth-submit {
+            width: 100%;
+            padding: 14px;
+            font-size: 1rem;
+            font-weight: 700;
+            border-radius: var(--radius-sm);
+            margin-bottom: 20px;
+        }
+
+        /* Success & Error Feedback Modal Toast styling */
+        .toast-notification {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: var(--bg-white);
+            box-shadow: var(--shadow-lg);
+            border-left: 5px solid var(--primary);
+            border-radius: var(--radius-sm);
+            padding: 16px 24px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            transform: translateY(120%);
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            z-index: 1000;
+        }
+
+        .toast-notification.active {
+            transform: translateY(0);
+        }
+
+        .toast-notification.error {
+            border-left-color: var(--accent);
+        }
+
+        /* Responsive Breakpoints */
+        @media (max-width: 991px) {
+            .auth-side-panel {
+                display: none;
+            }
+            .auth-form-panel {
+                flex: 1;
+                padding: 40px 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Loading Animation Screen -->
+    <div class="loader-wrapper">
+        <div class="loader-content">
+            <div class="loader-logo">
+                <svg viewBox="0 0 24 24">
+                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2V7zm0 8h2v2h-2v-2z"/>
+                </svg>
+                <span>SaveBite</span>
+            </div>
+            <div class="loader-bar">
+                <div class="loader-progress"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Auth Wrapper -->
+    <div class="auth-wrapper">
+        
+        <!-- Left Side Premium Hero Info Panel -->
+        <div class="auth-side-panel">
+            <a href="index.html" class="auth-panel-logo">
+                <svg viewBox="0 0 24 24">
+                    <path d="M12 2C8 2 4 5 4 10c0 4.5 3 8.5 7.5 9.8.3.1.5-.1.5-.4v-2.2c0-.3-.1-.6-.3-.8l-1.5-1.5c-.3-.3-.3-.8 0-1.1l.6-.6c.3-.3.8-.3 1.1 0l1.5 1.5c.2.2.5.3.8.3h.2c.3 0 .6-.1.8-.3l1.5-1.5c.3-.3.8-.3 1.1 0l.6.6c.3.3.3.8 0 1.1l-1.5 1.5c-.2.2-.3.5-.3.8v2.2c0 .3.2.5.5.4C17 18.5 20 14.5 20 10c0-5-4-8-8-8zm-1 5c0-.6.4-1 1-1s1 .4 1 1v4c0 .6-.4 1-1 1s-1-.4-1-1V7z"/>
+                </svg>
+                <span>SaveBite</span>
+            </a>
+
+            <div class="auth-panel-content">
+                <h2 class="auth-panel-title">Satu Klik Menyelamatkan Bumi.</h2>
+                <p class="auth-panel-desc">Masuk untuk menjelajahi ribuan pilihan makanan lezat dari restoran lokal favoritmu dengan harga diskon minimal 50%!</p>
+                
+                <div class="auth-stats-card">
+                    <div class="auth-stat-item">
+                        <h4>1.2K+ Ton</h4>
+                        <p>Limbah Pangan Dicegah</p>
+                    </div>
+                    <div class="auth-stat-item">
+                        <h4>3.4K+ Kg</h4>
+                        <p>Emisi Karbon Ditekan</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="auth-panel-footer">
+                <p>&copy; 2026 SaveBite platform. Keberlanjutan dimulai dari piring Anda.</p>
+            </div>
+        </div>
+
+        <!-- Right Side Glassmorphic Login Form Panel -->
+        <div class="auth-form-panel">
+            <div class="auth-form-container">
+                <div class="auth-form-header">
+                    <h1 class="auth-form-title">Selamat Datang</h1>
+                    <p class="auth-form-subtitle">Belum memiliki akun? <a href="register.html">Daftar Gratis</a></p>
+                </div>
+
+                <!-- Social Sign In buttons -->
+                <div class="auth-social-buttons">
+                    <button class="btn-social clickable" onclick="handleSocialLogin('Google')">
+                        <svg viewBox="0 0 24 24">
+                            <path fill="#4285F4" d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v3.92h6.69c-.29 1.5-1.14 2.77-2.4 3.63v3.02h3.88c2.27-2.09 3.57-5.17 3.57-8.5z"/>
+                            <path fill="#34A853" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.88-3.02c-1.08.72-2.45 1.16-4.05 1.16-3.11 0-5.74-2.11-6.68-4.96H1.21v3.11C3.18 21.88 7.39 24 12 24z"/>
+                            <path fill="#FBBC05" d="M5.32 14.27c-.24-.72-.38-1.49-.38-2.27s.14-1.55.38-2.27V6.62H1.21C.44 8.16 0 9.88 0 11.7s.44 3.54 1.21 5.08l4.11-3.11z"/>
+                            <path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.43-3.43C17.95 1.19 15.24 0 12 0 7.39 0 3.18 2.12 1.21 5.08l4.11 3.11c.94-2.85 3.57-4.96 6.68-4.96z"/>
+                        </svg>
+                        <span>Google</span>
+                    </button>
+                    <button class="btn-social clickable" onclick="handleSocialLogin('Apple')">
+                        <svg viewBox="0 0 24 24">
+                            <path fill="#12241E" d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M15.97 4.17c.66-.81 1.11-1.93.99-3.06-.96.04-2.13.64-2.82 1.45-.6.69-1.12 1.84-.98 2.94.97.08 2.06-.52 2.81-1.33z"/>
+                        </svg>
+                        <span>Apple</span>
+                    </button>
+                </div>
+
+                <div class="auth-divider">atau menggunakan Email</div>
+
+                <!-- Credentials Login Form -->
+                <form id="loginForm" onsubmit="handleFormSubmit(event)">
+                    <div class="form-group">
+                        <label class="form-label" for="email">Alamat Email</label>
+                        <div class="input-wrapper">
+                            <input class="auth-input" type="email" id="email" placeholder="nama@email.com" required>
+                            <svg class="input-icon" viewBox="0 0 24 24">
+                                <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                            </svg>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="password">Kata Sandi</label>
+                        <div class="input-wrapper">
+                            <input class="auth-input" type="password" id="password" placeholder="••••••••" required>
+                            <svg class="input-icon" viewBox="0 0 24 24">
+                                <path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/>
+                            </svg>
+                            <button type="button" class="password-toggle" onclick="togglePasswordVisibility()">
+                                <svg id="eyeIcon" viewBox="0 0 24 24">
+                                    <path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="auth-meta">
+                        <label class="remember-me">
+                            <input type="checkbox" id="remember">
+                            <span>Ingat saya</span>
+                        </label>
+                        <a href="#" class="forgot-password" onclick="handleForgotPassword(event)">Lupa sandi?</a>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary btn-auth-submit clickable">Masuk Sekarang</button>
+                </form>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Notification Toast -->
+    <div id="toast" class="toast-notification">
+        <span id="toastMessage">Berhasil Masuk! Membuka beranda...</span>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/main.js"></script>
+    <script>
+        // Password Visibility Toggle Function
+        function togglePasswordVisibility() {
+            const passwordInput = document.getElementById('password');
+            const eyeIcon = document.getElementById('eyeIcon');
+            
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                // Change to eye closed icon
+                eyeIcon.innerHTML = `<path d="M12 7c-2.76 0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5zm0 8.2c-1.77 0-3.2-1.43-3.2-3.2s1.43-3.2 3.2-3.2 3.2 1.43 3.2 3.2-1.43 3.2-3.2 3.2zM2 1C1.45 1 1 1.45 1 2v20c0 .55.45 1 1 1h20c.55 0 1-.45 1-1V2c0-.55-.45-1-1-1H2zm10 4.5c4.68 0 8.65 2.87 10.3 6.94-.33.82-.82 1.58-1.44 2.24l-1.42-1.42c.48-.48.86-1.04 1.1-1.66-1.46-3.44-4.83-5.6-8.54-5.6-.96 0-1.9.15-2.79.44l-1.5-1.5c1.33-.41 2.77-.6 4.29-.6zM3.44 6.84L5.68 9.08c-.46.46-.84.99-1.12 1.58 1.46 3.44 4.83 5.6 8.54 5.6 1.48 0 2.89-.34 4.14-.94l2.25 2.25c-1.89 1.15-4.14 1.79-6.39 1.79-4.68 0-8.65-2.87-10.3-6.94.33-.82.82-1.58 1.44-2.24zM12 9c1.66 0 3 1.34 3 3 0 .42-.1.82-.26 1.18l-3.92-3.92c.36-.16.76-.26 1.18-.26zm-1.18 4.42L8.58 11.18c.16-.36.26-.76.26-1.18 0-1.66 1.34-3 3-3 .42 0 .82.1 1.18.26l-2.2 2.2c-.36.16-.76.26-1.18.26z"/>`;
+            } else {
+                passwordInput.type = 'password';
+                // Restore eye open icon
+                eyeIcon.innerHTML = `<path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/>`;
+            }
+        }
+
+        // Show Toast Notification function
+        function showToast(message, isError = false) {
+            const toast = document.getElementById('toast');
+            const toastMessage = document.getElementById('toastMessage');
+            
+            toastMessage.textContent = message;
+            if (isError) {
+                toast.classList.add('error');
+            } else {
+                toast.classList.remove('error');
+            }
+            
+            toast.classList.add('active');
+            
+            setTimeout(() => {
+                toast.classList.remove('active');
+            }, 3000);
+        }
+
+        // Social login handler
+        function handleSocialLogin(provider) {
+            showToast(`Menghubungkan dengan ${provider}...`);
+            setTimeout(() => {
+                showToast(`Masuk berhasil melalui ${provider}!`, false);
+                setTimeout(() => {
+                    window.location.href = 'index.html';
+                }, 1000);
+            }, 1200);
+        }
+
+        // Forgot password simulation
+        function handleForgotPassword(e) {
+            e.preventDefault();
+            const email = document.getElementById('email').value;
+            if (!email) {
+                showToast('Harap isi alamat email terlebih dahulu.', true);
+                return;
+            }
+            showToast(`Tautan pemulihan sandi telah dikirim ke ${email}!`, false);
+        }
+
+        // Credentials Submit Simulation
+        function handleFormSubmit(e) {
+            e.preventDefault();
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            
+            // Competition demonstration verification loop
+            if (email && password) {
+                showToast('Memverifikasi akun...');
+                
+                setTimeout(() => {
+                    showToast('Berhasil Masuk! Membuka beranda...', false);
+                    setTimeout(() => {
+                        window.location.href = 'index.html';
+                    }, 1200);
+                }, 1500);
+            }
+        }
+    </script>
+</body>
+</html>

@@ -57,6 +57,14 @@ Pusat bantuan dan saluran komunikasi yang interaktif untuk pelanggan dan calon m
   * **FAQ Accordion**: Panel tanya-jawab interaktif dengan transisi pembukaan super halus memanfaatkan kalkulasi tinggi elemen dinamis (`scrollHeight`).
   * **Regional Coverage Map**: Representasi peta cakupan aktif dengan animasi gelombang denyut (*pulsing hot zones*) yang menunjukkan kota-kota jangkauan SaveBite.
 
+### 7. 🔑 Masuk & Daftar / Auth Pages (`login.html` & `register.html`)
+Halaman gerbang masuk dan pendaftaran dengan layout split-screen modern khas startup.
+* **Tujuan**: Memfasilitasi otentikasi akun bagi konsumen penyelamat maupun mitra restoran.
+* **Fitur Unggulan**:
+  * **Split-Screen Layout**: Panel visual informatif di sisi kiri yang menampilkan statistik dampak ekologi, dan panel form glassmorphic di sisi kanan.
+  * **Interactive Credentials Fields**: Input dengan visual status interaktif, tombol toggle kata sandi (lihat/sembunyikan), dan tombol login sosial (Google & Apple).
+  * **Toast Feedback loop**: Notifikasi toast interaktif yang mengalir mulus dengan Javascript untuk simulasi validasi pendaftaran dan login.
+
 ---
 
 ## 🎨 Keunggulan Desain & Interaksi (Aesthetic Tokens)
