@@ -261,6 +261,73 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
+    /* ==========================================================================
+       7. DYNAMIC TAB PANEL SWITCHING SYSTEM
+       ========================================================================== */
+    const menuItems = document.querySelectorAll('.dash-sidebar-menu .dash-menu-item');
+    const panels = document.querySelectorAll('.dash-panel');
+
+    window.showDashTab = function(tabId) {
+        // Hide all panels
+        panels.forEach(panel => panel.classList.remove('active'));
+        
+        // Deactivate all sidebar items
+        menuItems.forEach(item => item.classList.remove('active'));
+        
+        // Show selected panel
+        const targetPanel = document.getElementById(tabId);
+        if (targetPanel) {
+            targetPanel.classList.add('active');
+        }
+        
+        // Activate corresponding sidebar item
+        const targetMenuItem = document.querySelector(`.dash-sidebar-menu .dash-menu-item[data-tab="${tabId}"]`);
+        if (targetMenuItem) {
+            targetMenuItem.classList.add('active');
+        }
+
+        // Scroll to top of content area on mobile
+        if (window.innerWidth <= 991) {
+            const mainContent = document.querySelector('.dash-content');
+            if (mainContent) {
+                mainContent.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+    };
+
+    // Bind sidebar item clicks
+    menuItems.forEach(item => {
+        item.addEventListener('click', (e) => {
+            e.preventDefault();
+            const tabId = item.getAttribute('data-tab');
+            if (tabId) {
+                window.showDashTab(tabId);
+            }
+        });
+    });
+
+    // Handle any in-page links pointing to these panels
+    document.body.addEventListener('click', (e) => {
+        const link = e.target.closest('a');
+        if (!link) return;
+        
+        const href = link.getAttribute('href');
+        if (href && href.startsWith('#tab-')) {
+            e.preventDefault();
+            const tabId = href.substring(1);
+            window.showDashTab(tabId);
+        } else if (href === '#upload-listing-anchor') {
+            e.preventDefault();
+            window.showDashTab('tab-upload');
+        } else if (href === '#active-listings-anchor') {
+            e.preventDefault();
+            window.showDashTab('tab-inventory');
+        } else if (href === '#store-profile-anchor') {
+            e.preventDefault();
+            window.showDashTab('tab-profile');
+        }
+    });
+
     // Trigger Initial Render
     renderInventory();
 
