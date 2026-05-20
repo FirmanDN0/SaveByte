@@ -433,8 +433,8 @@ header.scrolled .navbar-container {
 }
 
 .btn-primary:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 12px 28px rgba(22, 90, 66, 0.25);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(22, 90, 66, 0.2);
     background-color: var(--primary-dark);
 }
 
@@ -446,8 +446,8 @@ header.scrolled .navbar-container {
 .btn-secondary:hover {
     background-color: var(--primary);
     color: var(--bg-white);
-    transform: translateY(-3px);
-    box-shadow: 0 12px 28px rgba(22, 90, 66, 0.15);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(22, 90, 66, 0.12);
 }
 
 .btn-accent {
@@ -458,8 +458,8 @@ header.scrolled .navbar-container {
 
 .btn-accent:hover {
     background-color: var(--accent-dark);
-    transform: translateY(-3px);
-    box-shadow: 0 12px 28px rgba(255, 111, 67, 0.3);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(255, 111, 67, 0.25);
 }
 
 .btn-outline {
@@ -471,8 +471,8 @@ header.scrolled .navbar-container {
 .btn-outline:hover {
     background-color: var(--primary);
     color: var(--bg-white);
-    transform: translateY(-3px);
-    box-shadow: 0 12px 28px rgba(22, 90, 66, 0.15);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(22, 90, 66, 0.12);
 }
 
 /* Mobile Menu Button */
@@ -725,14 +725,14 @@ section {
     border: 1px solid var(--glass-border);
     border-radius: var(--radius-lg);
     padding: 36px;
-    box-shadow: var(--shadow-md);
-    transition: transform 0.5s var(--transition-smooth), box-shadow 0.5s var(--transition-smooth), border-color 0.5s;
+    box-shadow: var(--shadow-sm);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s;
 }
 
 .glass-card:hover {
-    transform: translateY(-8px);
-    box-shadow: var(--shadow-lg);
-    border-color: rgba(22, 90, 66, 0.15);
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-md);
+    border-color: rgba(22, 90, 66, 0.1);
 }
 
 /* Asymmetric organic card border shape preference */
@@ -920,16 +920,16 @@ section {
     overflow: hidden;
     border: 1.5px solid var(--grey-light);
     box-shadow: var(--shadow-sm);
-    transition: transform 0.5s var(--transition-smooth), box-shadow 0.5s var(--transition-smooth), border-color 0.5s;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s;
     position: relative;
     display: flex;
     flex-direction: column;
 }
 
 .food-card:hover {
-    transform: translateY(-10px);
-    box-shadow: var(--shadow-lg);
-    border-color: rgba(22, 90, 66, 0.12);
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-md);
+    border-color: rgba(22, 90, 66, 0.1);
 }
 
 .card-img-wrapper {
@@ -947,7 +947,7 @@ section {
 }
 
 .food-card:hover .card-img-wrapper img {
-    transform: scale(1.06);
+    transform: scale(1.03);
 }
 
 .discount-badge {
@@ -994,7 +994,7 @@ section {
 
 .fav-btn:hover {
     background: var(--bg-white);
-    transform: scale(1.15);
+    transform: scale(1.08);
 }
 
 .fav-btn.active svg {
@@ -1121,11 +1121,12 @@ section {
     border-radius: var(--radius-lg);
     box-shadow: var(--shadow-sm);
     border: 1.5px solid var(--grey-light);
-    transition: transform 0.4s var(--transition-smooth);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .stat-box:hover {
-    transform: translateY(-6px);
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-md);
 }
 
 .stat-icon {

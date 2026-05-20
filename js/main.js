@@ -235,29 +235,29 @@ document.addEventListener('DOMContentLoaded', () => {
     window.refreshCursorListeners = applyCursorHovers;
 
     /* ==========================================================================
-       4. 3D PARALLAX CARD TILT PHYSICS
+       4. SUBTLE PARALLAX CARD TILT
        ========================================================================== */
     function applyCardTiltListeners() {
         document.querySelectorAll('.food-card, .stat-box, .sdg-card, .dev-card, .dash-stat-card, .tilt-element').forEach(card => {
             card.addEventListener('mousemove', (e) => {
                 const rect = card.getBoundingClientRect();
-                const x = e.clientX - rect.left; // x coordinate inside element
-                const y = e.clientY - rect.top;  // y coordinate inside element
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
                 
                 const xc = rect.width / 2;
                 const yc = rect.height / 2;
                 
-                // Tilt intensity divide ratio
-                const angleX = (yc - y) / 10; 
-                const angleY = (x - xc) / 10;
+                // Very subtle tilt intensity
+                const angleX = (yc - y) / 25; 
+                const angleY = (x - xc) / 25;
                 
-                card.style.transform = `perspective(1000px) rotateX(${angleX}deg) rotateY(${angleY}deg) translateY(-8px)`;
-                card.style.transition = 'transform 0.1s ease';
+                card.style.transform = `perspective(1000px) rotateX(${angleX}deg) rotateY(${angleY}deg) translateY(-3px)`;
+                card.style.transition = 'transform 0.15s ease';
             });
             
             card.addEventListener('mouseleave', () => {
                 card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0px)';
-                card.style.transition = 'transform 0.5s cubic-bezier(0.16, 1, 0.3, 1)';
+                card.style.transition = 'transform 0.4s ease';
             });
         });
     }
