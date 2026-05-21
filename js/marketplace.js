@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
             allergens: "Gluten, Dairy, Eggs",
             pickupWindow: "20:00 - 21:30 Tonight",
             dietary: "Vegetarian Friendly",
-            image: "https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&w=600&q=80",
+            image: "../assets/images/croissants.jpg",
             desc: "A fresh bakery assortment box of our daily signature pastries including 2 premium butter croissants, 1 chocolate pain au chocolat, and 2 almond croissants."
         },
         {
@@ -35,7 +35,7 @@ document.addEventListener('DOMContentLoaded', () => {
             allergens: "Fish, Soy, Gluten",
             pickupWindow: "21:30 - 22:30 Tonight",
             dietary: "Pescatarian, High Protein",
-            image: "https://images.unsplash.com/photo-1579871494447-9811cf80d66c?auto=format&fit=crop&w=600&q=80",
+            image: "../assets/images/sushi.jpg",
             desc: "Chef's selection pack of closing hour salmon nigiri (8pcs) and salmon avocado maki rolls (6pcs). Prepared fresh this evening, kept chilled."
         },
         {
@@ -52,7 +52,7 @@ document.addEventListener('DOMContentLoaded', () => {
             allergens: "None",
             pickupWindow: "18:00 - 20:00 Tonight",
             dietary: "Vegan, Gluten-Free",
-            image: "https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=600&q=80",
+            image: "../assets/images/organic-grocery.jpg",
             desc: "A rescue bundle of slightly surplus organic greens, including ripe heirloom tomatoes, wild spinach, fresh avocado, and organic field strawberries."
         },
         {
@@ -69,7 +69,7 @@ document.addEventListener('DOMContentLoaded', () => {
             allergens: "Gluten, Milk, Soy",
             pickupWindow: "19:30 - 21:00 Tonight",
             dietary: "Vegetarian",
-            image: "https://images.unsplash.com/photo-1514517604298-cf80e0fb7f1e?auto=format&fit=crop&w=600&q=80",
+            image: "../assets/images/donuts.jpg",
             desc: "Box containing 6 soft donuts glazed with classic organic chocolate sprinkles, vanilla cream toppings, and regional matcha powder infusions."
         },
         {
@@ -86,7 +86,7 @@ document.addEventListener('DOMContentLoaded', () => {
             allergens: "Soy, Mustard",
             pickupWindow: "21:00 - 22:00 Tonight",
             dietary: "Vegan, Halal Certified",
-            image: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=600&q=80",
+            image: "../assets/images/hero-salad.jpg",
             desc: "Healthy bento package consisting of warm organic jasmine rice, spiced local organic vegetable curry, tofu skins, and sweet pickled radishes."
         },
         {
@@ -103,7 +103,7 @@ document.addEventListener('DOMContentLoaded', () => {
             allergens: "Dairy, Gluten, Nuts",
             pickupWindow: "21:30 - 23:00 Tonight",
             dietary: "Meat and Veg Mix",
-            image: "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=600&q=80",
+            image: "../assets/images/buffet.jpg",
             desc: "A generous selection pack drawn from our premium grand evening dinner buffet, packaged safely in separate compartments, featuring chicken grill slice, salad bowls, and baked potatoes."
         }
     ];

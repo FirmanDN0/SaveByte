@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
             qty: 4,
             expiryMin: 45,
             soldCount: 0,
-            image: "https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&w=600&q=80",
+            image: "../assets/images/croissants.jpg",
             status: "Active"
         },
         {
@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
             qty: 3,
             expiryMin: 90,
             soldCount: 1,
-            image: "https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=600&q=80",
+            image: "../assets/images/bread-bakery.jpg",
             status: "Active"
         }
     ];
@@ -195,13 +195,13 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             // High quality mock images matching category inputs
-            let catImg = "https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&w=600&q=80"; // Bakery default
+            let catImg = "../assets/images/croissants.jpg"; // Bakery default
             if (category === 'Restaurant') {
-                catImg = "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=600&q=80";
+                catImg = "../assets/images/hero-salad.jpg";
             } else if (category === 'Buffet') {
-                catImg = "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=600&q=80";
+                catImg = "../assets/images/buffet.jpg";
             } else if (category === 'Grocery') {
-                catImg = "https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=600&q=80";
+                catImg = "../assets/images/organic-grocery.jpg";
             }
 
             const newListing = {
