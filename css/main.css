@@ -2451,7 +2451,6 @@ section {
 }
 
 .form-group input, .form-group select, .form-group textarea {
-    padding: 14px 18px;
     border-radius: var(--radius-sm);
     border: 1.5px solid var(--grey-medium);
     outline: none;

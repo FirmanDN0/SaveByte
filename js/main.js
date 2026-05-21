@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const currentPath = window.location.pathname.split('/').pop() || 'index.html';
     const navLinks = document.querySelectorAll('.nav-links a');
     navLinks.forEach(link => {
-        const linkPath = link.getAttribute('href');
+        const linkPath = (link.getAttribute('href') || '').split('/').pop();
         if (linkPath === currentPath) {
             link.classList.add('active');
         } else {
@@ -112,7 +112,8 @@ document.addEventListener('DOMContentLoaded', () => {
             anchor.addEventListener('click', (e) => {
                 // Ensure it's not pointing to the exact current page to prevent lock
                 const currentFile = window.location.pathname.split('/').pop() || 'index.html';
-                if (href === currentFile) return;
+                const hrefFile = href.split('/').pop();
+                if (hrefFile === currentFile) return;
 
                 e.preventDefault();
                 

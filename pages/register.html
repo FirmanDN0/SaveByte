@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign In - SaveBite platform</title>
-    <meta name="description" content="Sign in to SaveBite platform to rescue surplus food, track your environmental impact, or manage your restaurant partner dashboard.">
+    <title>Sign Up - SaveBite platform</title>
+    <meta name="description" content="Join the SaveBite platform to rescue premium surplus food, save money, and make a huge positive impact on global carbon emissions.">
     
     <!-- Styles -->
-    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="../css/main.css">
     
     <style>
         /* Custom Auth Layout Styles */
@@ -144,7 +144,7 @@
         }
 
         .auth-form-header {
-            margin-bottom: 36px;
+            margin-bottom: 30px;
         }
 
         .auth-form-title {
@@ -175,7 +175,7 @@
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 12px;
-            margin-bottom: 24px;
+            margin-bottom: 20px;
         }
 
         .btn-social {
@@ -208,7 +208,7 @@
             display: flex;
             align-items: center;
             text-align: center;
-            margin: 24px 0;
+            margin: 20px 0;
             color: var(--text-muted);
             font-size: 0.85rem;
             font-weight: 600;
@@ -230,7 +230,7 @@
         }
 
         .form-group {
-            margin-bottom: 20px;
+            margin-bottom: 16px;
             position: relative;
         }
 
@@ -239,7 +239,7 @@
             font-size: 0.85rem;
             font-weight: 700;
             color: var(--text-dark);
-            margin-bottom: 8px;
+            margin-bottom: 6px;
             text-transform: uppercase;
             letter-spacing: 0.5px;
         }
@@ -253,8 +253,8 @@
         .input-icon {
             position: absolute;
             left: 16px;
-            width: 20px;
-            height: 20px;
+            width: 18px;
+            height: 18px;
             fill: var(--text-muted);
             pointer-events: none;
             transition: fill var(--transition-fast);
@@ -262,7 +262,7 @@
 
         .auth-input {
             width: 100%;
-            padding: 14px 16px 14px 48px;
+            padding: 12px 16px 12px 50px;
             border-radius: var(--radius-sm);
             border: 1.5px solid var(--grey-medium);
             background-color: var(--bg-white);
@@ -280,6 +280,21 @@
 
         .auth-input:focus + .input-icon {
             fill: var(--primary);
+        }
+
+        /* Styled select */
+        select.auth-input {
+            appearance: none;
+            cursor: pointer;
+        }
+
+        .select-arrow {
+            position: absolute;
+            right: 16px;
+            width: 14px;
+            height: 14px;
+            fill: var(--text-muted);
+            pointer-events: none;
         }
 
         .password-toggle {
@@ -307,18 +322,29 @@
 
         .auth-meta {
             display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 28px;
-            font-size: 0.9rem;
+            align-items: flex-start;
+            margin-bottom: 24px;
+            font-size: 0.85rem;
         }
 
         .remember-me {
             display: flex;
-            align-items: center;
-            gap: 8px;
+            align-items: flex-start;
+            gap: 10px;
             cursor: pointer;
             font-weight: 500;
+            line-height: 1.4;
+            color: var(--text-muted);
+        }
+
+        .remember-me a {
+            color: var(--primary);
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        .remember-me a:hover {
+            color: var(--accent);
         }
 
         .remember-me input {
@@ -326,17 +352,7 @@
             height: 16px;
             accent-color: var(--primary);
             cursor: pointer;
-        }
-
-        .forgot-password {
-            color: var(--primary);
-            text-decoration: none;
-            font-weight: 600;
-            transition: color var(--transition-fast);
-        }
-
-        .forgot-password:hover {
-            color: var(--accent);
+            margin-top: 2px;
         }
 
         .btn-auth-submit {
@@ -408,7 +424,7 @@
         
         <!-- Left Side Premium Hero Info Panel -->
         <div class="auth-side-panel">
-            <a href="index.html" class="auth-panel-logo">
+            <a href="../index.html" class="auth-panel-logo">
                 <svg viewBox="0 0 24 24">
                     <path d="M12 2C8 2 4 5 4 10c0 4.5 3 8.5 7.5 9.8.3.1.5-.1.5-.4v-2.2c0-.3-.1-.6-.3-.8l-1.5-1.5c-.3-.3-.3-.8 0-1.1l.6-.6c.3-.3.8-.3 1.1 0l1.5 1.5c.2.2.5.3.8.3h.2c.3 0 .6-.1.8-.3l1.5-1.5c.3-.3.8-.3 1.1 0l.6.6c.3.3.3.8 0 1.1l-1.5 1.5c-.2.2-.3.5-.3.8v2.2c0 .3.2.5.5.4C17 18.5 20 14.5 20 10c0-5-4-8-8-8zm-1 5c0-.6.4-1 1-1s1 .4 1 1v4c0 .6-.4 1-1 1s-1-.4-1-1V7z"/>
                 </svg>
@@ -416,17 +432,17 @@
             </a>
 
             <div class="auth-panel-content">
-                <h2 class="auth-panel-title">Satu Klik Menyelamatkan Bumi.</h2>
-                <p class="auth-panel-desc">Masuk untuk menjelajahi ribuan pilihan makanan lezat dari restoran lokal favoritmu dengan harga diskon minimal 50%!</p>
+                <h2 class="auth-panel-title">Mulai Selamatkan Piringmu.</h2>
+                <p class="auth-panel-desc">Menjadi bagian dari komunitas ramah lingkungan terbesar di Indonesia. Selamatkan makanan lezat layak konsumsi dan kurangi emisi TPA secara instan.</p>
                 
                 <div class="auth-stats-card">
                     <div class="auth-stat-item">
-                        <h4>1.2K+ Ton</h4>
-                        <p>Limbah Pangan Dicegah</p>
+                        <h4>5,000+</h4>
+                        <p>Hero Penyelamat Aktif</p>
                     </div>
                     <div class="auth-stat-item">
-                        <h4>3.4K+ Kg</h4>
-                        <p>Emisi Karbon Ditekan</p>
+                        <h4>150+</h4>
+                        <p>Mitra Resto & Kafe</p>
                     </div>
                 </div>
             </div>
@@ -436,12 +452,12 @@
             </div>
         </div>
 
-        <!-- Right Side Glassmorphic Login Form Panel -->
+        <!-- Right Side Glassmorphic Register Form Panel -->
         <div class="auth-form-panel">
             <div class="auth-form-container">
                 <div class="auth-form-header">
-                    <h1 class="auth-form-title">Selamat Datang</h1>
-                    <p class="auth-form-subtitle">Belum memiliki akun? <a href="register.html">Daftar Gratis</a></p>
+                    <h1 class="auth-form-title">Daftar Akun</h1>
+                    <p class="auth-form-subtitle">Sudah memiliki akun? <a href="login.html">Masuk Sekarang</a></p>
                 </div>
 
                 <!-- Social Sign In buttons -->
@@ -463,14 +479,24 @@
                     </button>
                 </div>
 
-                <div class="auth-divider">atau menggunakan Email</div>
+                <div class="auth-divider">atau Daftar Akun Baru</div>
 
-                <!-- Credentials Login Form -->
-                <form id="loginForm" onsubmit="handleFormSubmit(event)">
+                <!-- Registration Form -->
+                <form id="registerForm" onsubmit="handleFormSubmit(event)">
+                    <div class="form-group">
+                        <label class="form-label" for="name">Nama Lengkap</label>
+                        <div class="input-wrapper">
+                            <input class="auth-input" type="text" id="name" placeholder="John Doe">
+                            <svg class="input-icon" viewBox="0 0 24 24">
+                                <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                            </svg>
+                        </div>
+                    </div>
+
                     <div class="form-group">
                         <label class="form-label" for="email">Alamat Email</label>
                         <div class="input-wrapper">
-                            <input class="auth-input" type="email" id="email" placeholder="nama@email.com" required>
+                            <input class="auth-input" type="email" id="email" placeholder="nama@email.com">
                             <svg class="input-icon" viewBox="0 0 24 24">
                                 <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
                             </svg>
@@ -478,9 +504,25 @@
                     </div>
 
                     <div class="form-group">
+                        <label class="form-label" for="role">Tipe Akun</label>
+                        <div class="input-wrapper">
+                            <select class="auth-input" id="role">
+                                <option value="consumer">Konsumen Penyelamat Pangan</option>
+                                <option value="merchant">Mitra Toko / Restoran</option>
+                            </select>
+                            <svg class="input-icon" viewBox="0 0 24 24">
+                                <path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 5 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/>
+                            </svg>
+                            <svg class="select-arrow" viewBox="0 0 24 24">
+                                <path d="M7 10l5 5 5-5z"/>
+                            </svg>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
                         <label class="form-label" for="password">Kata Sandi</label>
                         <div class="input-wrapper">
-                            <input class="auth-input" type="password" id="password" placeholder="••••••••" required>
+                            <input class="auth-input" type="password" id="password" placeholder="••••••••">
                             <svg class="input-icon" viewBox="0 0 24 24">
                                 <path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/>
                             </svg>
@@ -494,13 +536,12 @@
 
                     <div class="auth-meta">
                         <label class="remember-me">
-                            <input type="checkbox" id="remember">
-                            <span>Ingat saya</span>
+                            <input type="checkbox" id="terms">
+                            <span>Saya menyetujui <a href="terms.html">Syarat & Ketentuan</a> dan <a href="privacy.html">Kebijakan Privasi</a> SaveBite.</span>
                         </label>
-                        <a href="#" class="forgot-password" onclick="handleForgotPassword(event)">Lupa sandi?</a>
                     </div>
 
-                    <button type="submit" class="btn btn-primary btn-auth-submit clickable">Masuk Sekarang</button>
+                    <button type="submit" class="btn btn-primary btn-auth-submit clickable">Daftar Sekarang</button>
                 </form>
             </div>
         </div>
@@ -509,11 +550,11 @@
 
     <!-- Notification Toast -->
     <div id="toast" class="toast-notification">
-        <span id="toastMessage">Berhasil Masuk! Membuka beranda...</span>
+        <span id="toastMessage">Akun berhasil terdaftar!</span>
     </div>
 
     <!-- Scripts -->
-    <script src="js/main.js"></script>
+    <script src="../js/main.js"></script>
     <script>
         // Password Visibility Toggle Function
         function togglePasswordVisibility() {
@@ -554,41 +595,25 @@
         function handleSocialLogin(provider) {
             showToast(`Menghubungkan dengan ${provider}...`);
             setTimeout(() => {
-                showToast(`Masuk berhasil melalui ${provider}!`, false);
+                showToast(`Pendaftaran berhasil dengan ${provider}!`, false);
                 setTimeout(() => {
                     window.location.href = 'profile.html';
                 }, 1000);
             }, 1200);
         }
 
-        // Forgot password simulation
-        function handleForgotPassword(e) {
-            e.preventDefault();
-            const email = document.getElementById('email').value;
-            if (!email) {
-                showToast('Harap isi alamat email terlebih dahulu.', true);
-                return;
-            }
-            showToast(`Tautan pemulihan sandi telah dikirim ke ${email}!`, false);
-        }
-
-        // Credentials Submit Simulation
+        // Form Submit Simulation
         function handleFormSubmit(e) {
             e.preventDefault();
-            const email = document.getElementById('email').value;
-            const password = document.getElementById('password').value;
             
-            // Competition demonstration verification loop
-            if (email && password) {
-                showToast('Memverifikasi akun...');
-                
+            showToast('Membuat akun baru...');
+            
+            setTimeout(() => {
+                showToast('Akun berhasil terdaftar! Selamat datang...', false);
                 setTimeout(() => {
-                    showToast('Berhasil Masuk! Membuka profil...', false);
-                    setTimeout(() => {
-                        window.location.href = 'profile.html';
-                    }, 1200);
-                }, 1500);
-            }
+                    window.location.href = 'profile.html';
+                }, 1200);
+            }, 1500);
         }
     </script>
 </body>

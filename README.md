@@ -83,11 +83,45 @@ Halaman simulasi transaksi penyelamatan pangan surplus yang terhubung dengan ker
 
 ---
 
-## 🎨 Keunggulan Desain & Interaksi (Aesthetic Tokens)
-* **Warna Alam & Kertas Hangat**: Paduan hijau kelestarian murni (`#165A42`), latar belakang krim kertas lembut (`#FAF7F2`), serta aksen oranye-peach segar (`#FF6F43`).
-* **Morphing Trailing Cursor**: Kursor khusus dengan fisik pegas (*spring physics*) yang mengikuti pergerakan pointer secara organik dan dapat berubah mode teks konteks secara cerdas (misalnya: menunjukkan kata "OPEN" saat meluncur di atas foto produk, atau "LOVE" di atas tombol favorit).
-* **Parallax 3D Tilt**: Perhitungan posisi koordinat kursor presisi pada kartu untuk menghasilkan kemiringan visual 3D yang dinamis.
-* **GPU-Accelerated Smooth Transitions**: Transisi perpindahan halaman *Awwwards-style* menggunakan overlay layar penuh dengan akselerasi hardware grafik (`translateX`) yang meluncur bebas hambatan (tanpa lag render).
+## 📁 Struktur Folder Proyek
+
+```
+savebite1/
+│
+├── index.html                          ← Beranda utama (Landing Page)
+│
+├── pages/                              ← Seluruh halaman sub-navigasi
+│   ├── about.html                      ← Tentang Kami & Tim Pengembang
+│   ├── marketplace.html                ← Katalog Makanan Surplus
+│   ├── impact.html                     ← Dashboard Dampak Lingkungan
+│   ├── restaurant.html                 ← Simulasi Dashboard Mitra Bisnis
+│   ├── contact.html                    ← Kontak & FAQ
+│   ├── login.html                      ← Halaman Masuk
+│   ├── register.html                   ← Halaman Daftar Akun
+│   ├── profile.html                    ← Profil & Portofolio Pengguna
+│   ├── checkout.html                   ← Simulasi Klaim & Pembayaran
+│   ├── privacy.html                    ← Kebijakan Privasi
+│   ├── terms.html                      ← Syarat & Ketentuan
+│   ├── partner-agreement.html          ← Perjanjian Mitra
+│   └── food-safety.html               ← Standar Keamanan Pangan
+│
+├── css/                                ← Stylesheet
+│   └── main.css                        ← Design system & seluruh styling
+│
+├── js/                                 ← JavaScript
+│   ├── main.js                         ← Script global (cursor, loader, nav, transitions)
+│   ├── marketplace.js                  ← Logika filter, keranjang, & modal produk
+│   ├── restaurant.js                   ← Dashboard simulasi mitra restoran
+│   ├── impact.js                       ← Kalkulator karbon & chart canvas
+│   └── contact.js                      ← FAQ accordion & form handling
+│
+├── assets/                             ← Aset media & brand
+│   ├── images/                         ← Foto & gambar lokal
+│   └── icons/                          ← Ikon SVG & favicon
+│
+└── README.md                           ← Dokumentasi proyek ini
+```
 
 ---
 *Dibuat dengan penuh dedikasi 💚 untuk Kompetisi Desain Web Nasional.*
+
